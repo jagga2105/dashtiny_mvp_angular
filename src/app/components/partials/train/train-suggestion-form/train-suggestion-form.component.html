@@ -1,0 +1,140 @@
+<form #flightForm="ngForm" class="pt-3 d-flex flex-column suggestion-form align-items-center">
+    <div class="row mb-3 w-100 align-items-center">
+      <div class="col-2 form-check" [ngClass]="{'selected': !isOneWaySelected, 'Not-selected': isOneWaySelected}">
+        <span class="d-inline-block">
+          <input type="radio" id="roundTrip" name="tripType" autocomplete="off" class="form-check-input"
+            (change)="handleRadioButtonChange()" [(ngModel)]="journey.tripType" value="roundTrip">
+          <label for="roundTrip" class="form-check-label"><b>Round Getaway</b></label>
+        </span>
+      </div>
+
+      <div class="col-2 form-check" [ngClass]="{'selected': isOneWaySelected, 'Not-selected': !isOneWaySelected}">
+        <input type="radio" id="oneWay" name="tripType" autocomplete="off" class="form-check-input"
+          (change)="handleRadioButtonChange()" [(ngModel)]="journey.tripType" value="oneWay">
+        <label for="oneWay" class="form-check-label"><b>One Way</b></label>
+      </div>
+    </div>
+
+    <div class="row w-100">
+      <div class="col p-0 form-group position-relative">
+        <label for="departureCity"><b>Departure City</b></label>
+        <input type="text" id="departureCity" [value]="journey.departureCity" name="departureCity" autocomplete="off" class="form-control"
+          [(ngModel)]="journey.departureCity" required placeholder="Enter Departure City" #departureCityInput="ngModel"
+          (input)="filterDepartureRailwayStations($event)" />
+          <span *ngIf="journey.departureCity" (click)="resetDepartureCity()" class="clear-icon">
+            <i class="material-icons notranslate">cancel</i>
+          </span>
+        <ul *ngIf="filteredDepartureRailwayStations.length > 0" class="list-group suggestions-list">
+          <li *ngFor="let RailwayStation of filteredDepartureRailwayStations" class="list-group-item" (click)="selectDepartureRailwayStation(RailwayStation)">
+            <div>
+              <span class="font-weight-bold">({{ RailwayStation.code }})</span>
+              <span class="text-muted"> {{ RailwayStation.name }} {{RailwayStation.city}}</span>
+            </div>
+          </li>
+        </ul>
+
+
+      </div>
+
+
+      <div class="col p-0 form-group position-relative">
+        <label for="arrivalCity"><b>Arrival City</b></label>
+        <input type="text" id="arrivalCity" name="arrivalCity" autocomplete="off" class="form-control"
+          [(ngModel)]="journey.arrivalCity" [value]="journey.arrivalCity" required placeholder="Enter Arrival City" (input)="filterRailwayStations($event)"
+          #arrivalCityInput="ngModel" data-toggle="tooltip" data-placement="top"
+          [title]="arrivalCityInput.errors?.['required'] ? 'Arrival City is required.' : ''" />
+        <span *ngIf="journey.arrivalCity" (click)="resetArrivalCity()" class="clear-icon">
+          <i class="material-icons notranslate">cancel</i>
+        </span>
+        <ul *ngIf="filteredArrivalRailwayStations.length > 0" class="list-group suggestions-list">
+          <li *ngFor="let RailwayStation of filteredArrivalRailwayStations" class="list-group-item" (click)="selectArrivalRailwayStation(RailwayStation)">
+            <div>
+              <span class="font-weight-bold">({{ RailwayStation.code }})</span>
+              <span class="text-muted">{{ RailwayStation.name }}</span>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+
+      <div class="col p-0 form-group">
+        <label for="departureDate"><b>Departure Date</b></label>
+        <input
+          type="date"
+          id="departureDate"
+          name="departureDate"
+          class="form-control"
+          [(ngModel)]="journey.departureDate"
+          required
+          min="{{ currentDate }}"
+        />
+        <span
+          *ngIf="journey.departureDate"
+          (click)="resetDepartureDate()"
+          class="clear-icon"
+        >
+          <i class="material-icons notranslate">cancel</i>
+        </span>
+      </div>
+
+
+      <div class="col p-0 form-group">
+        <label for="returnDate"><b>Return Date</b></label>
+        <input type="date" id="returnDate" [disabled]="isOneWaySelected" min="{{ currentDate }}" name="returnDate" class="form-control"
+          [(ngModel)]="journey.returnDate">
+        <span *ngIf="journey.returnDate" (click)="resetReturnDate()" class="clear-icon">
+          <i class="material-icons notranslate">cancel</i>
+        </span>
+      </div>
+
+      <div class="col-3 p-0 form-group">
+        <label for="travelerClass"><b>Traveller & Cabin Class</b></label>
+        <div class="custom-input position-relative">
+          <input type="text" id="travelerClass" name="travelerClass" class="form-control" [(ngModel)]="journey.travellers"
+            required (click)="toggleDropdown()" placeholder="Select Traveller & Cabin Class" autocomplete="off" />
+          <span *ngIf="journey.travellers || journey.selectedCabin" (click)="resettravelandCabin()" class="clear-icon">
+            <i class="material-icons notranslate">cancel</i>
+          </span>
+          <div class="custom-dropdown" [ngClass]="{'show': isDropdownOpen}">
+            <div class="row">
+              <div class="col my-3 justify-content-start align-items-start text-left px-4">
+                <span class="no-of-passenger">Passengers:</span> <button (click)="decrement()"
+                  class="btn btn-secondary add-sub-btn">-</button>
+                <span class="Passengers-number"> {{ selectedValue }} </span>
+                <button (click)="increment()" class="btn btn-secondary add-sub-btn">+</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col my-3 justify-content-start align-items-start text-left px-4">
+                <div class="d-flex align-items-center cabin-class">
+                  <span>Cabin Class: </span>
+                  <div class="custom-sub-dropdown col p-0">
+                    <button class="dropdown-toggle col" type="button" (click)="toggleCabinClassOption()">
+                      {{selectedCabinClass}}
+                    </button>
+                    <ul class="dropdown-menu" [ngClass]="toggleCabinClassOptionClicked ? 'show' : 'hide'">
+                      <li><a (click)="selectOption('Economy')">Economy</a></li>
+                      <li><a (click)="selectOption('Business')">Business</a></li>
+                      <li><a (click)="selectOption('First')">First Class</a></li>
+                      <!-- Add more options as needed -->
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col mb-3">
+                <button CLASS="btn btn-primary" (click)="sendPassengerCabinClassDetail()">Ok</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col p-0 form-group">
+        <button type="submit" class="btn btn-primary me-5" [disabled]="flightForm.invalid" (click)="submitForm()">Get Trains</button>
+      </div>
+    </div>
+  </form>

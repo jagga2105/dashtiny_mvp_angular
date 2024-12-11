@@ -1,0 +1,130 @@
+<form #hotelForm="ngForm" class="pt-3 d-flex flex-column suggestion-form align-items-center">
+  <div class="row mb-3 w-100 align-items-center">
+    <div class="col-2 form-check" [ngClass]="{'selected': journey.stayType === 'hotels', 'Not-selected': journey.stayType !== 'hotels'}">
+      <span class="d-inline-block">
+        <input type="radio" id="hotels" name="stayType" autocomplete="off" class="form-check-input"
+          (change)="handleStayTypeChange('hotels')" [(ngModel)]="journey.stayType" value="hotels">
+        <label for="hotels" class="form-check-label"><b>Hotels</b></label>
+      </span>
+    </div>
+
+    <div class="col-2 form-check" [ngClass]="{'selected': journey.stayType === 'hostels', 'Not-selected': journey.stayType !== 'hostels'}">
+      <input type="radio" id="hostels" name="stayType" autocomplete="off" class="form-check-input"
+        (change)="handleStayTypeChange('hostels')" [(ngModel)]="journey.stayType" value="hostels">
+      <label for="hostels" class="form-check-label"><b>Hostels</b></label>
+    </div>
+
+    <div class="col-2 form-check" [ngClass]="{'selected': journey.stayType === 'homeStay', 'Not-selected': journey.stayType !== 'homeStay'}">
+      <input type="radio" id="homeStay" name="stayType" autocomplete="off" class="form-check-input"
+        (change)="handleStayTypeChange('homeStay')" [(ngModel)]="journey.stayType" value="homeStay">
+      <label for="homeStay" class="form-check-label"><b>Home stays</b></label>
+    </div>
+
+    <div class="col-2 form-check" [ngClass]="{'selected': journey.stayType === 'resorts', 'Not-selected': journey.stayType !== 'resorts'}">
+      <input type="radio" id="resorts" name="stayType" autocomplete="off" class="form-check-input"
+        (change)="handleStayTypeChange('resorts')" [(ngModel)]="journey.stayType" value="resorts">
+      <label for="resorts" class="form-check-label"><b>Resorts</b></label>
+    </div>
+
+  </div>
+
+
+    <div class="row w-100">
+        <div class="col p-0 form-group position-relative">
+          <label for="departureCity"><b>Departure City</b></label>
+          <input type="text" id="departureCity" [value]="journey.departureCity" name="departureCity" autocomplete="off" class="form-control"
+            [(ngModel)]="journey.departureCity" required placeholder="Enter City" #departureCityInput="ngModel"
+            (input)="filterCity($event)" />
+            <span *ngIf="journey.departureCity" (click)="resetDepartureCity()" class="clear-icon">
+              <i class="material-icons notranslate">cancel</i>
+            </span>
+          <ul *ngIf="filteredPlaces.length > 0" class="list-group suggestions-list">
+            <li *ngFor="let place of filteredPlaces" class="list-group-item" (click)="onDepartureCitySelect(place)">
+              <div>
+                <span class="font-weight-bold">({{ place.city }})</span>
+                <span class="text-muted"> {{ place.state }}</span>
+              </div>
+            </li>
+          </ul>
+
+
+        </div>
+
+      <div class="col p-0 form-group">
+        <label for="departureDate"><b>Check In Date</b></label>
+        <input
+          type="date"
+          id="departureDate"
+          name="departureDate"
+          class="form-control"
+          [(ngModel)]="journey.departureDate"
+          required
+          min="{{ currentDate }}"
+        />
+        <span
+          *ngIf="journey.departureDate"
+          (click)="resetDepartureDate()"
+          class="clear-icon"
+        >
+          <i class="material-icons notranslate">cancel</i>
+        </span>
+      </div>
+
+
+      <div class="col p-0 form-group">
+        <label for="returnDate"><b>Check Out Date</b></label>
+        <input type="date" id="returnDate" [disabled]="isOneWaySelected" min="{{ currentDate }}" name="returnDate" class="form-control"
+          [(ngModel)]="journey.returnDate">
+        <span *ngIf="journey.returnDate" (click)="resetReturnDate()" class="clear-icon">
+          <i class="material-icons notranslate">cancel</i>
+        </span>
+      </div>
+
+      <div class="col-3 p-0 form-group">
+        <label for="travelerClass"><b>Rooms and No. of Guests</b></label>
+        <div class="custom-input position-relative">
+          <input type="text" id="travelerClass" name="travelerClass" class="form-control" [(ngModel)]="journey.travellers"
+            required (click)="toggleDropdown()" placeholder="Select no-of-rooms & Guests" autocomplete="off" />
+          <span *ngIf="journey.travellers || journey.selectedCabin" (click)="resettravelandCabin()" class="clear-icon">
+            <i class="material-icons notranslate">cancel</i>
+          </span>
+          <div class="custom-dropdown" [ngClass]="{'show': isDropdownOpen}">
+            <div class="row">
+              <div class="col d-flex my-3 justify-content-start align-items-start text-left px-4">
+                <span class="no-of-rooms">Rooms</span> <button (click)="decrementRooms()"
+                  class="btn btn-secondary add-sub-btn">-</button>
+                <span class="Passengers-number"> {{ noOfRooms }} </span>
+                <button (click)="incrementRooms()" class="btn btn-secondary add-sub-btn">+</button>
+              </div>
+              <div class="row">
+                <div class="col d-flex my-3 justify-content-start align-items-start text-left px-4">
+                  <span class="no-of-adults">Adults</span> <button (click)="decrementAdults()"
+                    class="btn btn-secondary add-sub-btn">-</button>
+                  <span class="Passengers-number"> {{ noOfAdults }} </span>
+                  <button (click)="incrementAdults()" class="btn btn-secondary add-sub-btn">+</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col d-flex my-3 justify-content-start align-items-start text-left px-4">
+                  <span class="no-of-children">Children</span> <button (click)="decrementChildren()"
+                    class="btn btn-secondary add-sub-btn">-</button>
+                  <span class="Passengers-number"> {{ noOfChildren }} </span>
+                  <button (click)="incrementChildren()" class="btn btn-secondary add-sub-btn">+</button>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col mb-3">
+                <button class="btn btn-primary" (click)="sendPassengersRoomDetail()">Ok</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col p-0 form-group">
+        <button type="submit" class="btn btn-primary me-5" [disabled]="hotelForm.invalid" (click)="submitForm()">Get Hotels</button>
+      </div>
+    </div>
+  <!-- </form> -->

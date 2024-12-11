@@ -1,0 +1,79 @@
+<div class="hero-image pt-5" *ngIf="!flightDetailsService.showDetails">
+    <div class="container">
+      <div class="bgo-white">
+        <ul class="nav nav-tabs mt-5 mb-3" id="myTabs" role="tablist">
+          <li class="nav-item mr-3" *ngFor="let label of tabLabels; let i = index">
+            <a class="nav-link" [class.active]="i === activeTabIndex" (click)="setActiveTab(i)" id="{{label}}-tab" data-toggle="tab" href="#{{label}}" role="tab" aria-selected="true">
+              <i class="material-icons notranslate">{{tabLabels[i].icon}}</i> <b>{{tabLabels[i].label}}</b>
+            </a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane fade show" *ngFor="let label of tabLabels; let i = index" [attr.id]="label" role="tabpanel" [attr.aria-labelledby]="label + '-tab'" [hidden]="i !== activeTabIndex">
+            <!-- Content for the current tab -->
+            <ng-container *ngIf="tabLabels[i].label === 'Flight'">
+              <ng-container *ngTemplateOutlet="flightSuggestionForm"></ng-container>
+            </ng-container>
+            <ng-container *ngIf="tabLabels[i].label === 'Hotel'">
+              <ng-container *ngTemplateOutlet="hotelSuggestionForm"></ng-container>
+            </ng-container>
+            <ng-container *ngIf="tabLabels[i].label === 'Train'">
+              <ng-container *ngTemplateOutlet="trainSuggestionForm"></ng-container>
+            </ng-container>
+            <ng-container *ngIf="tabLabels[i].label === 'Bus'">
+              <ng-container *ngTemplateOutlet="busSuggestionForm"></ng-container>
+            </ng-container>
+            <ng-container *ngIf="tabLabels[i].label === 'Cab'">
+              <ng-container *ngTemplateOutlet="cabSuggestionForm"></ng-container>
+            </ng-container>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-flights-home *ngIf="showFlightHome && isFlightTabActive"></app-flights-home>
+  <app-hotels-home *ngIf="showHotelHome && isHotelTabActive"></app-hotels-home>
+  <!-- Place this template outside of the hero-image container -->
+  <ng-template #flightSuggestionForm>
+    <app-flight-suggestion-form (flightButtonClick)="hideFlightHome()"></app-flight-suggestion-form>
+  </ng-template>
+  <ng-template #hotelSuggestionForm>
+    <app-hotel-suggestion-form (hotelButtonClick)="hideHotelHome()"></app-hotel-suggestion-form>
+  </ng-template>
+  <ng-template #trainSuggestionForm>
+    <app-train-suggestion-form></app-train-suggestion-form>
+  </ng-template>
+  <ng-template #busSuggestionForm>
+    <app-bus-suggestion-form></app-bus-suggestion-form>
+  </ng-template>
+  <ng-template #cabSuggestionForm>
+    <app-cab-suggestion-form></app-cab-suggestion-form>
+  </ng-template>
+  <!--Cards-->
+  <div class="tab-pane fade show" *ngFor="let label of tabLabels; let i = index" [attr.id]="label" role="tabpanel" [attr.aria-labelledby]="label + '-tab'" [hidden]="i !== activeTabIndex">
+    <!-- Content for the current tab -->
+    <ng-container *ngIf="tabLabels[i].label === 'Flight'">
+      <app-flight-listing *ngIf="showFlightListing && !showFlightHome"></app-flight-listing>
+    </ng-container>
+    <ng-container *ngIf="tabLabels[i].label === 'Hotel'">
+      <app-hotel-listing *ngIf="showHotelListing && !showHotelHome"></app-hotel-listing>
+    </ng-container>
+    <ng-container *ngIf="tabLabels[i].label === 'Train'">
+      <app-train-listing></app-train-listing>
+    </ng-container>
+    <ng-container *ngIf="tabLabels[i].label === 'Bus'">
+      <app-bus-listing></app-bus-listing>
+    </ng-container>
+    <ng-container *ngIf="tabLabels[i].label === 'Cab'">
+      <app-cab-listing></app-cab-listing>
+    </ng-container>
+  </div>
+  <button class="btn btn-primary chat-btn" (click)="openChatPopup()">
+    <img src="../../assets/dashGuru.png">
+  </button>
+  <div *ngIf="showChatPopup" #chatPopupModal class="modal">
+    <app-chat-popup></app-chat-popup>
+  </div>
+
+

@@ -1,0 +1,48 @@
+<div class="cab-suggestion-form">
+  <div class="d-flex-row ml-5">
+ <div class="cab-type">
+  <input type="radio" name="one-way">
+  <label class="ml-2" for="one-way">One Way</label>
+ </div>
+ <div class="cab-type ml-3">
+  <input type="radio" name="round-trip">
+  <label class="ml-2" for="round-trip">Round Getaway</label>
+ </div>
+ <div class="cab-type ml-3">
+  <input type="radio" name="hourly-rental">
+  <label class="ml-2" for="hourly-rental">Hourly Rental</label>
+ </div>
+ </div>
+  <div class="cabs-options d-flex mt-3">
+  <section class="pickup section-separater">
+  <p class="from">From</p>
+  <p class="city">Delhi</p>
+  </section>
+  <img class="reverse-city" src="../../assets/Sorting Arrows.png" width="40px" height="40px" alt="">
+  <section class="drop-off section-separater">
+  <p class="to">To</p>
+  <p class="city">Kanpur</p>
+  </section>
+
+  <section class="travel-date section-separater">
+
+    <div class="col p-0 form-group">
+      <p>Travel Date</p>
+      <input type="date" id="returnDate" [disabled]="isOneWaySelected" min="{{ currentDate }}" name="returnDate" class="form-control"
+        [(ngModel)]="journey.returnDate">
+      <span *ngIf="journey.returnDate" (click)="resetReturnDate()" class="clear-icon">
+        <i class="material-icons notranslate">cancel</i>
+      </span>
+    </div>
+
+  </section>
+  <section class="pickup-time section-separater">
+<p>Pickup Time</p>
+  </section>
+  <section class="travellers">
+<p>Travellers</p>
+  </section>
+  </div>
+  <button type="submit" class="get-buses mt-4"><p>Search Cabs</p></button>
+  </div>
+

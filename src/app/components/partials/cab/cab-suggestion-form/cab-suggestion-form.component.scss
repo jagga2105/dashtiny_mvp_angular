@@ -1,0 +1,76 @@
+.cab-suggestion-form{
+  padding-top:10px;
+  padding-bottom:20px;
+ 
+  p{
+    color:black;
+    font-family: var(--font-family-primary);
+    
+  }
+}
+.d-flex-row{
+  display: flex;
+  flex-direction: row;
+}
+.cab-type{
+background-color: white;
+border-radius: 10px;
+padding:2px 10px;
+display: flex;
+justify-content: center;
+}
+.cabs-options{
+width:1132px;
+border-radius: 20px;
+border: 1px solid #FE802C;
+background-color:white;
+box-shadow: 0px 4px 4px 0px rgba(254, 128, 44, 0.26);
+margin:0 auto;
+}
+.section-separater{
+  border-right:1px solid #FE802C;
+
+}
+section{
+  width:20%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+
+.reverse-city{
+  margin:auto;
+  margin-left:-20px;
+  border-radius:50%;
+  border:1px solid #FE802C;
+}
+
+#calendar{
+  display: none;
+}
+.get-buses{
+ margin:0 auto;
+ background-color:var(--secondary-color) ;
+ border:none;
+ padding:5px 20px;
+ p{
+  color:white;
+  margin-bottom: 0;
+  
+ }
+}
+.city{
+  font-size: 36px;
+
+font-weight: 700;
+
+
+}
+.from,.to,.travel-date p{
+  font-size:20px;
+  text-transform: uppercase;
+}
+.travel-date div input{
+  border:none;
+}
+

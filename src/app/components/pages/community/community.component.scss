@@ -1,0 +1,131 @@
+.gradient-banner::before {
+    background-image: linear-gradient(332deg, rgb(42 157 244 / 19%) 0%, rgb(42 157 244 / 31%) 56%, rgb(42 157 244 / 34%) 92%) !important;
+  }
+  .float-button {
+    right:0;
+    bottom: 1px;
+  }
+  .carousel-control-prev {
+    left: 0px;
+    height: 40px;
+    width: 40px;
+    top: 50%;
+    background: #fe8535;
+    z-index: 99;
+}
+.carousel-control-next {
+  right:0px;
+  height: 40px;
+    width: 40px;
+    top: 50%;
+    background: #fe8535;
+    z-index: 99;
+}
+.user-img-top {
+  position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    top: 10px;
+    z-index:9;
+    left: 10px;
+    -webkit-box-shadow: 5px 5px 15px 4px rgba(0,0,0,0.75);
+-moz-box-shadow: 5px 5px 15px 4px rgba(0,0,0,0.75);
+box-shadow: 5px 5px 15px 4px rgba(0,0,0,0.75);
+}
+.trip-card .favorite-icon {
+  font-size: 24px;
+  cursor: pointer;
+  border-radius: 50%;
+    padding: 5px;
+    width: 34px;
+    height:34px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #fff;
+}
+
+.trip-card .favorite-icon.filled {
+  .material-symbols-outlined {
+  color: white !important;
+}
+    background: red;
+}
+.trip-card .card-title {
+  position: absolute;
+  top: 20px;
+  left: 43px;
+  color: #fff;
+  padding: 5px 10px 5px 26px;
+  border-radius: 25px;
+  background: linear-gradient(344deg, rgba(30, 30, 30, 0.49) 0%, rgba(0, 0, 0, 0.51) 50%);
+  z-index: 1;
+  font-size: 1rem;
+}
+.trip-card .card-body {
+  min-height: 215px;
+}
+.trip-card .action-button {
+  position: absolute;
+  bottom: 1%;
+  left: 1%;
+  width: 98%;
+}
+.trip-type {
+  position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgb(254 133 53);
+    padding: 5px 15px;
+    border-radius: 20px;
+    color: #000;
+    span {
+      color: #000;
+    }
+}
+.user-detail {
+  position: relative;
+  background: linear-gradient(344deg, rgba(30, 30, 30, 0.49) 0%, rgba(0, 0, 0, 0.51) 50%);
+  .card-title {
+    display: none;
+  }
+  .trip-type {
+    opacity: 0.5;
+  }
+}
+.user-detail:hover {
+  .card-title {
+    display: block;
+  }
+  .trip-type {
+    opacity: 1;
+  }
+}
+::ng-deep .modal{
+  background: #000000c9 !important;
+}
+.bg-dashcoin {
+  background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
+}
+.image-container {
+  flex: 1;
+  margin: 0 4px; /* Margin between images */
+  height: 200px; /* Fixed height for all image containers */
+  overflow: hidden; /* Ensures images don’t overflow the container */
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the container while maintaining its aspect ratio */
+  border-radius: 4px; /* Optional: Add a border radius for aesthetics */
+}
+
+.single-image {
+  margin: 0; /* No margin for a single image */
+}
+
+.double-image {
+  width: 48%; /* Adjust to fit two images in a row */
+}

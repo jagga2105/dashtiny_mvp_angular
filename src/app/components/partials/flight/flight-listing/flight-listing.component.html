@@ -1,0 +1,263 @@
+<div class="container my-4" *ngIf="submittedDataServiceService.showListing">
+    <div class="row">
+        <div class="col-12 offertagsection" *ngIf="!flightDetailsService.showDetails">
+            <!-- Carousel -->
+            <div id="multiItemCarousel" class="carousel" data-bs-ride="false">
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row">
+                            <!-- Items in the first slide -->
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="d-flex align-items-center justify-content-center mb-0">
+                                            <img src="../../assets/IBN-af38b5c0.png" class="mr-2" alt="Item 1">
+                                            15% Discount on ICICI Credit Cards.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="d-flex align-items-center justify-content-center mb-0">
+                                            <img src="../../assets/AXISBANK.BO-8f59e95b.png" class="mr-2" alt="Item 1">
+                                            10% Discount on Axis Credit Cards.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="d-flex align-items-center justify-content-center mb-0">
+                                            <img src="../../assets/sbi-logo-744E8B0C10-seeklogo.com.png" class="mr-2"
+                                                alt="Item 1">
+                                            15% Discount on SBI Credit Cards.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="d-flex align-items-center justify-content-center mb-0">
+                                            <img src="../../assets/IBN-af38b5c0.png" class="mr-2" alt="Item 1">
+                                            Convert to smart EMI option on ICICI Credit Cards.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Add more items in this slide -->
+                        </div>
+                    </div>
+
+                    <!-- Additional slides with multiple items -->
+                    <div class="carousel-item">
+                        <div class="row">
+                            <!-- Items in the second slide -->
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="d-flex align-items-center justify-content-center mb-0">
+                                            <img src="../../assets/IBN-af38b5c0.png" class="mr-2" alt="Item 1">
+                                            25% Discount on ICICI Credit Cards.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="d-flex align-items-center justify-content-center mb-0">
+                                            <img src="../../assets/IBN-af38b5c0.png" class="mr-2" alt="Item 1">
+                                            15% Discount on ICICI Credit Cards.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="d-flex align-items-center justify-content-center mb-0">
+                                            <img src="../../assets/IBN-af38b5c0.png" class="mr-2" alt="Item 1">
+                                            15% Discount on ICICI Credit Cards.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="d-flex align-items-center justify-content-center mb-0">
+                                            <img src="../../assets/IBN-af38b5c0.png" class="mr-2" alt="Item 1">
+                                            15% Discount on ICICI Credit Cards.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Add more items in this slide -->
+                        </div>
+                    </div>
+                    <!-- Add more slides as needed -->
+                </div>
+
+                <!-- Controls -->
+                <a class="carousel-control-prev" href="#multiItemCarousel" role="button" data-bs-slide="prev">
+                    <i class="material-icons notranslate">keyboard_arrow_left</i>
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#multiItemCarousel" role="button" data-bs-slide="next">
+                    <i class="material-icons notranslate">keyboard_arrow_right</i>
+                    <span class="visually-hidden">Next</span>
+                </a>
+            </div>
+            <!-- End Carousel -->
+        </div>
+    </div>
+
+    <div class="row" *ngIf="!flightDetailsService.showDetails">
+      <div class="col-2 filter-section">
+        <div class="my-4">
+          <div id="accordion">
+            <div *ngFor="let section of accordionData; let i = index" class="card my-3">
+              <div class="card-header" [id]="section.label + 'Heading'">
+                <h5 class="mb-0">
+                  <button class="btn btn-link text-dark" data-toggle="collapse"
+                          [attr.data-target]="'#' + section.label + 'Collapse'" [attr.aria-expanded]="i === 0"
+                          [attr.aria-controls]="section.label + 'Collapse'">
+                    {{ section.label }}
+                  </button>
+                </h5>
+              </div>
+
+              <div [id]="section.label + 'Collapse'" class="collapse show"
+                   [attr.aria-labelledby]="section.label + 'Heading'" data-parent="#accordion">
+                <div class="card-body">
+                  <div *ngFor="let item of section.items">
+                    <label *ngIf="section.label !== 'Price'">
+                      <input type="checkbox" (change)="onFilterChange(section.label, item)"> {{ item }}
+                    </label>
+                    <label *ngIf="section.label === 'Price'">
+                      <input type="checkbox" (change)="onPriceRangeChange(item.range)"> {{ item.label }}
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+        <div class="col-7 flight-list" >
+            <div class="d-flex my-4">
+                <ul class="nav nav-tabs col-12 p-0" role="tablist">
+                  <li class="nav-item col-4 p-0">
+                    <a class="nav-link active" id="lowCost-tab" data-toggle="tab" href="#lowCost" role="tab" aria-controls="lowCost" aria-selected="true"><b>Low Cost</b></a>
+                  </li>
+                  <li class="nav-item col-4 p-0">
+                    <a class="nav-link" id="direct-tab" data-toggle="tab" href="#direct" role="tab" aria-controls="direct" aria-selected="false"><b>Direct</b></a>
+                  </li>
+                  <li class="nav-item col-4 p-0">
+                    <a class="nav-link" id="timing-tab" data-toggle="tab" href="#timing" role="tab" aria-controls="timing" aria-selected="false"><b>Timing</b></a>
+                  </li>
+                </ul>
+              </div>
+              <div class="tab-content">
+                <div class="tab-pane fade show active" id="lowCost" role="tabpanel" aria-labelledby="lowCost-tab">
+                  <div class="sponsored-content">
+                    <div class="booking-card position-relative">
+                        <div class="row px-3">
+                            <div class="col-10">
+                                <div class="sponsored-tag position-absolute">
+                                    <div class="d-flex align-items-center justify-content-center">
+                                    <span class="material-symbols-outlined notranslate text-dark">
+                                        info
+                                        </span>
+                                        <p class="mb-0">
+                                        <small>Sponsored</small></p>
+                                    </div>
+                                </div>
+                            <div class="d-flex py-2 align-items-center h-100">
+                                <section class="booking-name d-flex align-items-center">
+                                    <img src="../../assets/air_india.png" alt="air_india" width="64px">
+                                </section>
+
+                                <section class="booking-details ml-5 d-flex align-items-center">
+                                    <div>
+                                        <h5>Fly Air India Express</h5>
+                                        <p class="mb-0">Travel light with upto 10 kg cabin baggage. Save more on every flight! View Details</p>
+                                    </div>
+                                </section>
+                            </div>
+
+                            </div>
+                            <div class="col-2 row-left-1 px-0 d-flex flex-column align-items-center justify-content-center py-5">
+
+                            <!-- <button class="btn btn-primary" (click)="onBookNow(flight)">View Details</button> -->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                  <div *ngIf="filteredFlights.length > 0">
+                    <app-flight-card
+                      *ngFor="let flight of filteredFlights"
+                      [flight]="flight"
+                      (bookNowClicked)="showListingDetails()"
+                    ></app-flight-card>
+                  </div>
+                  <div *ngIf="filteredFlights.length === 0">
+                    <p>No flights available with the selected filters.</p>
+                  </div>
+
+
+
+
+                </div>
+                <div class="tab-pane fade" id="direct" role="tabpanel" aria-labelledby="direct-tab">
+                  <!-- Content for the "Direct" tab goes here -->
+                  here comes some more card
+                </div>
+                <div class="tab-pane fade" id="timing" role="tabpanel" aria-labelledby="timing-tab">
+                  <!-- Content for the "Timing" tab goes here -->
+                  here comes some more more card
+                </div>
+              </div>
+
+
+        </div>
+        <div class="col-3 sponsored-content">
+            <div class="booking-card position-relative my-4">
+                <div class="row px-3">
+                    <div class="col-12">
+                    <div class="d-flex py-2 align-items-center h-100">
+                        <section class="booking-details d-flex align-items-center">
+                            <div>
+                                <h5>Get the best hotel</h5>
+                                <p class="mb-0">Travel light with upto 10 kg cabin baggage. Save more on every flight! Book now</p>
+                            </div>
+                        </section>
+                    </div>
+
+                    </div>
+                    <div class="col-12 row-left-1 d-flex flex-column align-items-center justify-content-center py-2">
+
+                    <button class="btn btn-primary">Find Hotels</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row pt-4">
+      <app-flight-listing-detail *ngIf="flightDetailsService.showDetails"></app-flight-listing-detail>
+    </div>
+</div>

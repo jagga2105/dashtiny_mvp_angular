@@ -1,0 +1,201 @@
+<div class="container mt-5">
+  <div class="featured-destination">
+
+<div class="row">
+  <div class="col-12">
+    <div class="rounded shadow position-relative d-flex">
+      <div class="w-100 position-absolute h-100 sponsored-content-main p-3 text-left">
+        <div class="row">
+          <div class="col mt-4">
+        <h2 class="text-capitalize text-left h2 text-white">Fly Easy, Fly Smart: Book Your Next Adventure with Us!</h2>
+        <p class="regular text-white text-left">Experience seamless travel planning and unbeatable savings when you book your flights through our platform. </p>
+        <ul class="our-benifits d-flex">
+          <li>
+            <h6>Flexible Bookings</h6>
+            <p>Enjoy free cancellation and easy rescheduling options.</p>
+          </li>
+          <li>
+            <h6>Best Price Guarantee</h6>
+            <p>Find the lowest fares for your preferred routes.</p>
+          </li>
+          <li>
+            <h6>Exclusive Deals</h6>
+            <p>Unlock member-only discounts and special offers.</p>
+          </li>
+          <li>
+            <h6>24/7 Support</h6>
+            <p>Get round-the-clock assistance from our dedicated customer service team.</p>
+          </li>
+          <li>
+            <h6>Earn Rewards</h6>
+            <p>Collect points with every booking for future travel benefits.</p>
+          </li>
+        </ul>
+      </div>
+
+      </div>
+      </div>
+      <div class="col-12 p-0 bg-img d-flex align-items-center justify-content-center">
+        <img src="../../../../../assets/flight.jpg" class="w-100" Alt="DAIna" />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mt-5">
+  <div class="col-lg-6 col-md-12 text-center">
+    <div class="rounded mh-190 shadow d-flex">
+      <div class="col p-3 text-left">
+        <h3 class="text-capitalize text-left h5 ">Unsure of your next move?</h3>
+        <p class="regular text-muted text-left">Discover your dream getaway effortlessly with our DAIna!
+          <br />Try it now.</p>
+        <button class="btn btn-primary">Try DAIna</button>
+      </div>
+      <div class="col-3 bg-daina d-flex align-items-center justify-content-center">
+        <img src="../../../../../assets/dashGuru.png" class="img-fluid p-3" Alt="DAIna" />
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-12 text-center">
+    <div class="rounded mh-190 shadow position-relative d-flex">
+      <div class="w-100 position-absolute h-100 sponsored-content-main p-3 text-left">
+        <div class="row">
+          <div class="col">
+        <h3 class="text-capitalize text-left h5 text-white">Explore Uttarakhand?</h3>
+        <p class="regular text-white text-left">Visit Uttarakhand and get extra discount on your flights and hotels.</p>
+        <button class="btn btn-primary">See places</button>
+      </div>
+      <div class="col-3">
+        <img src="../../../../../assets/uttarakhand-logo-english.png" class="img-fluid"/>
+      </div>
+      </div>
+      </div>
+      <div class="col-12 p-0 bg-img d-flex align-items-center justify-content-center">
+        <img src="../../../../../assets/uttarakhand.jpg" class="mh-190" Alt="DAIna" />
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+
+  <h3 class="mt-5 text-dark font-weight-bold mb-3">Popular Destinations</h3>
+    <div class="row">
+      <div class="col-md-3 mb-4" *ngFor="let card of cardData">
+        <div class="rounded shadow position-relative d-flex" (click)="openModal(card)">
+          <div class="w-100 position-absolute h-100 sponsored-content-main p-3 text-left">
+            <div class="row">
+              <div class="col">
+            <h5 class="text-capitalize text-left h5 text-white">{{ card.title }}</h5>
+
+          </div>
+          </div>
+          </div>
+          <div class="col-12 p-0 bg-img d-flex align-items-center justify-content-center">
+            <img [src]="card.image" class="img-fluid" [alt]="card.title" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <h3 class="mt-5 text-dark font-weight-bold mb-3">Top Offers</h3>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="rounded shadow">
+        <div class="row">
+        <div class="col-12 bg-img d-flex align-items-center justify-content-center">
+          <img src="https://images.pexels.com/photos/466685/pexels-photo-466685.jpeg?auto=compress&cs=tinysrgb&w=600" class="img-fluid" Alt="DAIna" />
+        </div>
+      </div>
+      <div class="row px-3">
+        <div class="col-12 p-3 text-left">
+          <h3 class="text-capitalize text-left h5 ">Flight offer 1</h3>
+          <p class="regular text-muted text-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <button class="btn btn-primary">Book Now</button>
+        </div>
+      </div>
+      </div>
+
+    </div>
+    <div class="col-md-4">
+      <div class="rounded shadow">
+        <div class="row">
+        <div class="col-12 bg-img d-flex align-items-center justify-content-center">
+          <img src="https://images.pexels.com/photos/409127/pexels-photo-409127.jpeg?auto=compress&cs=tinysrgb&w=600" class="img-fluid" Alt="DAIna" />
+        </div>
+      </div>
+      <div class="row px-3">
+        <div class="col-12 p-3 text-left">
+          <h3 class="text-capitalize text-left h5 ">Flight offer 1</h3>
+          <p class="regular text-muted text-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <button class="btn btn-primary">Book Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="col-md-4">
+      <div class="rounded shadow">
+        <div class="row">
+        <div class="col-12 bg-img d-flex align-items-center justify-content-center">
+          <img src="https://images.pexels.com/photos/1209978/pexels-photo-1209978.jpeg?auto=compress&cs=tinysrgb&w=600" class="img-fluid" Alt="DAIna" />
+        </div>
+      </div>
+      <div class="row px-3">
+        <div class="col-12 p-3 text-left">
+          <h3 class="text-capitalize text-left h5 ">Flight offer 1</h3>
+          <p class="regular text-muted text-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <button class="btn btn-primary">Book Now</button>
+        </div>
+      </div>
+
+    </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" [ngClass]="{ 'show': modalOpen }">
+  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ selectedCard?.title }} Details</h5>
+        <button type="button" class="close" aria-label="Close" (click)="closeDialog()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body p-0">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li *ngFor="let data of selectedCard?.ModalData; let i = index" [class.active]="i === 0"
+              data-target="#carouselExampleIndicators" [attr.data-slide-to]="i"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item" *ngFor="let data of selectedCard?.ModalData; let i = index"
+              [class.active]="i === 0">
+              <div class="place-info">
+                <div class="place-image">
+                  <img [src]="data.placeImg" [alt]="data.placeName" class="w-50">
+                </div>
+                <div class="place-details">
+                  <h5 class="text-dark">{{ data.placeName }}</h5>
+                  <p class="text-dark">{{ data.placeDescription }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="bookFlight()">Book Flight</button>
+        <button type="button" class="btn btn-secondary" (click)="bookHotel()">Book Hotel</button>
+        <button type="button" class="btn btn-secondary" (click)="bookCab()">Book Cab</button>
+        <button type="button" class="btn btn-secondary" (click)="findEvents()">Find Nearby Events</button>
+        <button type="button" class="btn btn-secondary" (click)="closeDialog()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

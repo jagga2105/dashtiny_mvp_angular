@@ -1,0 +1,192 @@
+<div class="container my-4">
+    <div class="row">
+        <div class="col-12 offertagsection">
+            <!-- Carousel -->
+            <div id="multiItemCarousel" class="carousel" data-bs-ride="false">
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row">
+                            <!-- Items in the first slide -->
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="d-flex align-items-center justify-content-center mb-0">
+                                            <img src="../../assets/IBN-af38b5c0.png" class="mr-2" alt="Item 1">
+                                            15% Discount on ICICI Credit Cards.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="d-flex align-items-center justify-content-center mb-0">
+                                            <img src="../../assets/AXISBANK.BO-8f59e95b.png" class="mr-2" alt="Item 1">
+                                            10% Discount on Axis Credit Cards.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="d-flex align-items-center justify-content-center mb-0">
+                                            <img src="../../assets/sbi-logo-744E8B0C10-seeklogo.com.png" class="mr-2"
+                                                alt="Item 1">
+                                            15% Discount on SBI Credit Cards.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="d-flex align-items-center justify-content-center mb-0">
+                                            <img src="../../assets/IBN-af38b5c0.png" class="mr-2" alt="Item 1">
+                                            Convert to smart EMI option on ICICI Credit Cards.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Add more items in this slide -->
+                        </div>
+                    </div>
+
+                    <!-- Additional slides with multiple items -->
+                    <div class="carousel-item">
+                        <div class="row">
+                            <!-- Items in the second slide -->
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="d-flex align-items-center justify-content-center mb-0">
+                                            <img src="../../assets/IBN-af38b5c0.png" class="mr-2" alt="Item 1">
+                                            15% Discount on ICICI Credit Cards.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="d-flex align-items-center justify-content-center mb-0">
+                                            <img src="../../assets/IBN-af38b5c0.png" class="mr-2" alt="Item 1">
+                                            15% Discount on ICICI Credit Cards.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="d-flex align-items-center justify-content-center mb-0">
+                                            <img src="../../assets/IBN-af38b5c0.png" class="mr-2" alt="Item 1">
+                                            15% Discount on ICICI Credit Cards.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="d-flex align-items-center justify-content-center mb-0">
+                                            <img src="../../assets/IBN-af38b5c0.png" class="mr-2" alt="Item 1">
+                                            15% Discount on ICICI Credit Cards.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Add more items in this slide -->
+                        </div>
+                    </div>
+                    <!-- Add more slides as needed -->
+                </div>
+
+                <!-- Controls -->
+                <a class="carousel-control-prev" href="#multiItemCarousel" role="button" data-bs-slide="prev">
+                    <i class="material-icons notranslate">keyboard_arrow_left</i>
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#multiItemCarousel" role="button" data-bs-slide="next">
+                    <i class="material-icons notranslate">keyboard_arrow_right</i>
+                    <span class="visually-hidden">Next</span>
+                </a>
+            </div>
+            <!-- End Carousel -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3 filter-section">
+            <div class="my-4">
+                <div id="accordion">
+                    <div *ngFor="let section of accordionData; let i = index" class="card my-3">
+                      <div class="card-header" [id]="section.label + 'Heading'">
+                        <h5 class="mb-0">
+                          <button class="btn btn-link" data-toggle="collapse"
+                                  [attr.data-target]="'#' + section.label + 'Collapse'" [attr.aria-expanded]="i === 0"
+                                  [attr.aria-controls]="section.label + 'Collapse'">
+                            {{ section.label }}
+                          </button>
+                        </h5>
+                      </div>
+
+                      <div [id]="section.label + 'Collapse'" class="collapse show"
+                           [attr.aria-labelledby]="section.label + 'Heading'" data-parent="#accordion">
+                        <div class="card-body">
+                          <div *ngFor="let item of section.items">
+                            <label *ngIf="section.label !== 'One-Way Price'"><input type="checkbox"> {{ item }}</label>
+                          </div>
+
+                          <!-- Conditionally render the price slider based on showSection -->
+                          <div *ngIf="section.label === 'One-Way Price'">
+                            <div appRangeSlider [minValue]="0" [maxValue]="50000" [startValue]="50" (rangeChange)="onRangeChange($event)"></div>
+                            <p class="mt-3 slider-info-text">Selected Range: 0 - {{selectedRange}}</p>
+                          </div>
+
+                          <!-- You can add additional content or components for specific sections here -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <div class="col-9 flight-list">
+            <div class="d-flex my-4">
+                <ul class="nav nav-tabs col-12 p-0" role="tablist">
+                  <li class="nav-item col-4 p-0">
+                    <a class="nav-link active" id="lowCost-tab" data-toggle="tab" href="#lowCost" role="tab" aria-controls="lowCost" aria-selected="true"><b>Low Cost</b></a>
+                  </li>
+                  <li class="nav-item col-4 p-0">
+                    <a class="nav-link" id="direct-tab" data-toggle="tab" href="#direct" role="tab" aria-controls="direct" aria-selected="false"><b>Direct</b></a>
+                  </li>
+                  <li class="nav-item col-4 p-0">
+                    <a class="nav-link" id="timing-tab" data-toggle="tab" href="#timing" role="tab" aria-controls="timing" aria-selected="false"><b>Timing</b></a>
+                  </li>
+                </ul>
+              </div>
+              <div class="tab-content">
+                <div class="tab-pane fade show active" id="lowCost" role="tabpanel" aria-labelledby="lowCost-tab">
+                  <!-- Content for the "Low Cost" tab goes here -->
+                  <app-train-card></app-train-card>
+                </div>
+                <div class="tab-pane fade" id="direct" role="tabpanel" aria-labelledby="direct-tab">
+                  <!-- Content for the "Direct" tab goes here -->
+                  here comes some more card
+                </div>
+                <div class="tab-pane fade" id="timing" role="tabpanel" aria-labelledby="timing-tab">
+                  <!-- Content for the "Timing" tab goes here -->
+                  here comes some more more card
+                </div>
+              </div>
+
+            <div class="d-flex">
+                <div class="col-6"></div>
+                <div class="col-6"></div>
+            </div>
+        </div>
+    </div>
+</div>

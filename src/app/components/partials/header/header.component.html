@@ -1,0 +1,91 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <!-- Logo on the left -->
+    <a class="navbar-brand" routerLink="/"><img class="logo" src="../../assets/logo_big.png" alt="Logo"/></a>
+
+    <!-- Centered menu items with icons -->
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item">
+        <a class="nav-link notranslate" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          Home
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link notranslate" routerLink="/bookings" routerLinkActive="active">
+          Bookings
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link notranslate" routerLink="/hire-us" routerLinkActive="active">
+          Hire Us
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link notranslate" routerLink="/community" routerLinkActive="active">
+          Community
+        </a>
+      </li>
+    </ul>
+
+    <!-- Right-side buttons with icons -->
+    <div class="navbar-nav ml-auto">
+      <!-- <div class="dropdown me-2">
+
+        <div id="google_translate_element">
+
+        </div>
+
+      </div> -->
+      <button class="btn btn-primary me-2" type="button">
+        Our Products
+      </button>
+      <button class="btn btn-primary me-2" *ngIf="!isLoggedIn()" routerLink="/login" type="button">
+        <i class="material-icons notranslate">account_circle</i> Login
+      </button>
+      <!-- <button class="btn btn-secondary" *ngIf="!isLoggedIn()" type="button">
+        <i class="material-icons notranslate">person_add</i> Sign Up
+      </button> -->
+      <button class="btn btn-primary me-2" *ngIf="isLoggedIn()" type="button" (click)="loadDashboard()">
+        <i class="material-icons notranslate">dashboard</i> Dashboard
+      </button>
+      <div class="nav-item dropdown" *ngIf="isLoggedIn()" [class.show]="isNotificationDropdownOpen" (click)="toggleNotificationDropdown()">
+        <!-- <a class="nav-link dropdown-toggle p-2 m-0" id="userDropdown" role="button" >
+          <span class="material-symbols-outlined">
+            notifications
+            </span>
+        </a> -->
+        <ul class="dropdown-menu" aria-labelledby="userDropdown"  (clickOutside)="closeDropdown()">
+          <li class="p-3 border-bottom-1">
+            <div class="d-flex align-items-center">
+              <img class="profile-image" [src]="getUserProfileImage()" alt="Profile Image">
+              <span class="user-name">{{ getUserName() }}</span>
+            </div>
+          </li>
+          <li class="p-3 border-bottom-1"><a class="dropdown-item border-bottom-0" routerLink="/profile"  routerLinkActive="active">Profile</a></li>
+          <li class="p-3 border-bottom-1"><a class="dropdown-item border-bottom-0" href="#">Settings</a></li>
+          <li class="p-3"><a class="dropdown-item border-bottom-0" href="#" (click)="signOut()">Logout</a></li>
+        </ul>
+      </div>
+
+
+      <div class="nav-item dropdown" *ngIf="isLoggedIn()" [class.show]="isDropdownOpen" (click)="toggleProfileDropdown()">
+        <a class="nav-link dropdown-toggle p-0 m-0" id="userDropdown" role="button" >
+          <div class="d-flex align-items-center">
+            <img class="profile-image" [src]="getUserProfileImage()" alt="Profile Image">
+          </div>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="userDropdown"  (clickOutside)="closeDropdown()">
+          <li class="p-3 border-bottom-1">
+            <div class="d-flex align-items-center">
+              <img class="profile-image" [src]="getUserProfileImage()" alt="Profile Image">
+              <span class="user-name">{{ getUserName() }}</span>
+            </div>
+          </li>
+          <li class="p-3 border-bottom-1"><a class="dropdown-item border-bottom-0" routerLink="/profile"  routerLinkActive="active">Profile</a></li>
+          <li class="p-3 border-bottom-1"><a class="dropdown-item border-bottom-0" href="#">Settings</a></li>
+          <li class="p-3"><a class="dropdown-item border-bottom-0" href="#" (click)="signOut()">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

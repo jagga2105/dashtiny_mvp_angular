@@ -1,0 +1,416 @@
+.chat-popup {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  font-family: 'Arial', sans-serif;
+}
+
+.chat-header {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  height: 68px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.diana-logo {
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fe8535;
+  border-radius: 5px;
+}
+
+.diana-logo img {
+  height: 50px;
+}
+
+button.close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+
+.chat-body {
+  display: flex;
+  height: calc(100% - 68px);
+}
+
+.sidebar {
+  background-color: #f4f5f8;
+  padding: 20px;
+  border-right: 1px solid #ddd;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.sidebar-content {
+  .sidebar-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+  }
+
+  .sidebar-menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 10px;
+
+      a {
+        display: flex;
+        align-items: center;
+        color: #333;
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: #007bff;
+        }
+
+        .material-icons {
+          font-size: 24px;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
+
+.chat-content {
+  width: 80%;
+  padding: 10px;
+  overflow-y: auto;
+}
+.chat-header ul.nav {
+  border:none !important;
+}
+.nav-tabs {
+  .nav-link {
+    color: #333;
+    border:none;
+    &.active {
+      font-weight: bold;
+      color: #007bff;
+      border:none;
+    }
+  }
+}
+
+.chat-bubble {
+  max-width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  clear: both;
+  background-color: #f1f1f1;
+}
+
+.chat-bubble.bot {
+  float: left;
+  background-color: #fe853552;
+}
+
+.chat-bubble.user {
+  float: right;
+  background-color: #007bff59;
+}
+
+.user-options {
+  max-width: 80%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #fff;
+  clear: both;
+
+  p {
+    margin-bottom: 5px;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      margin-bottom: 5px;
+
+      a {
+        text-decoration: none;
+        color: #007bff;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: darken(#007bff, 10%);
+        }
+      }
+    }
+  }
+}
+
+.chat-footer {
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  background-color: #f4f5f8;
+  border-radius: 0 0 8px 8px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+    bottom: 0;
+    width: 98%;
+}
+
+.chat-footer input[type="text"] {
+  flex: 1;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  padding: 8px;
+  border-radius: 20px;
+}
+
+.chat-footer button {
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+}
+
+.history {
+  padding: 20px;
+  background-color: #f4f5f8;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  overflow-y: auto;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  h2 {
+    font-size: 24px;
+    margin: 0;
+  }
+
+  .clear-history-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: hsl(11, 100%, 50%);
+    display: flex;
+    align-items: center;
+
+    i {
+      margin-right: 5px;
+      color: hsl(11, 100%, 50%);
+    }
+  }
+}
+
+
+
+.prompt-heading, .prompt-content, .trip-planning h3, .key-features h3, .insight h3 {
+  font-size: 14px;
+  margin-bottom: 0px;
+}
+
+.prompt-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  p {
+    font-size:12px;
+    margin-bottom:0;
+  }
+  .time {
+    font-size:10px !important;
+    color: #888;
+  }
+}
+
+.trip-planning p {
+  margin: 0;
+  font-size:12px;
+}
+
+.key-features .tag-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  .tag {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    font-size: 14px;
+  }
+}
+
+.insight-content {
+  display: flex;
+  align-items: center;
+
+  img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-right: 20px;
+  }
+
+  .insight-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+}
+.insight-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.insight-content img {
+  flex: 1 1 calc(25% - 10px);
+  max-width: calc(25% - 10px);
+  height: auto;
+  margin-right:0px !important;
+  object-fit: cover;
+}
+.prompt-heading {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.prompt-content {
+  font-size: 1rem;
+  color: #333;
+}
+
+.prompt-content .time {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.trip-planning h3, .key-features h3, .insight h3 {
+  font-size: 1.5rem;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.trip-planning p, .key-features .tag-list, .insight-content {
+  font-size: 1rem;
+  color: #333;
+}
+
+.key-features .tag-list .tag {
+  background-color: #007bff;
+  color: white;
+  padding: 5px 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.insight-content img {
+  flex: 1 1 calc(25% - 10px);
+  max-width: calc(25% - 10px);
+  height: auto;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+/* src/app/app.component.css */
+.itinerary .card {
+  margin-bottom: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.itinerary .card-body {
+  padding: 15px;
+}
+
+.itinerary .card-title {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.itinerary .card-text {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.itinerary h6 {
+  font-size: 1rem;
+  margin-bottom: 3px;
+}
+
+.itinerary p {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.btn-success.btn-sm {
+  font-size: 0.8rem;
+  padding: 5px 10px;
+}
+
+.bg-custom {
+  background-color: #007bff32;
+}
+::ng-deep .chat-response-ul {
+  padding-left:0px;
+  h4{
+  font-size: 1.2rem;
+  font-weight: bold
+  }
+  li {
+    padding-left:15px;
+    h4 {
+      font-size: 1.1rem;
+  font-weight: bold
+    }
+  }
+}
+
+.chat-container {
+  height: 76vh;
+  overflow-y:auto;
+}

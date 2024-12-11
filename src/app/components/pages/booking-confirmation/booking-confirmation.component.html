@@ -1,0 +1,88 @@
+<!-- Booking Confirmation -->
+<div class="container mt-5 booking-confirmation">
+  <div class="card">
+    <div class="card-header bg-white text-dark">
+      <img src="../../../../assets/logo_big.png" alt="Logo" class="logo">
+      <h3>Booking Confirmation</h3>
+    </div>
+    <div class="card-body">
+ <!-- Booking Details -->
+ <div class="booking-details mb-4">
+  <h5 class="card-title">Booking Details</h5>
+  <hr>
+  <div class="row">
+    <div class="col-md-6">
+      <p><strong>Booking ID:</strong> ABC123</p>
+      <p><strong>Name:</strong> John Doe</p>
+      <p><strong>Email:</strong> johndoe@example.com</p>
+      <p><strong>Phone:</strong> +1234567890</p>
+    </div>
+    <div class="col-md-6">
+      <p><strong>Flight:</strong> Flight from New York to London</p>
+      <p><strong>Departure:</strong> January 20, 2024</p>
+      <p><strong>Passengers:</strong> 2 Adults, 1 Child</p>
+      <p><strong>Total Price:</strong> $1200</p>
+    </div>
+  </div>
+</div>
+<hr>
+<!-- Ticket Information -->
+<div class="ticket-info">
+  <h5 class="card-title">Ticket Information</h5>
+  <hr>
+  <div class="row">
+    <div class="col-md-6">
+      <p><strong>Flight Number:</strong> AA123</p>
+      <p><strong>Departure Time:</strong> 10:00 AM</p>
+      <p><strong>Arrival Time:</strong> 4:00 PM</p>
+      <p><strong>Departure Airport:</strong> JFK International Airport (JFK)</p>
+      <p><strong>Terminal:</strong> Terminal 4</p>
+    </div>
+    <div class="col-md-6">
+      <p><strong>Seat Number:</strong> 12A, 12B, 12C</p>
+      <p><strong>Gate:</strong> B12</p>
+      <p><strong>Baggage:</strong> 2 Checked Bags</p>
+      <p><strong>Status:</strong> Confirmed</p>
+    </div>
+  </div>
+</div>
+<hr>
+      <!-- QR Code for Ticket -->
+      <div class="qr-code mt-4">
+        <h5 class="card-title">Scan QR Code for Boarding Pass</h5>
+        <img src="../../../../assets/QR_code.png" alt="QR Code" class="img-fluid" style="max-width: 200px;">
+        <p class="small mt-2">Use any QR Code scanner app on your smartphone to scan the code and access your boarding pass.</p>
+
+      </div>
+<!-- Travel Guidelines -->
+<hr>
+<div class="travel-guidelines mt-4">
+  <h5 class="card-title">Travel Guidelines</h5>
+  <hr>
+  <small>
+    <p>1. Please arrive at the airport at least 2 hours before the departure time.</p>
+    <p>2. Ensure you have all necessary travel documents and identification.</p>
+    <p>3. Follow all security and health protocols at the airport.</p>
+    <p>4. Check-in online if available to save time at the airport.</p>
+  </small>
+</div>
+
+<!-- Support Information -->
+<div class="support-info mt-4">
+  <h5 class="card-title">Support Information</h5>
+  <hr>
+  <small>
+    <p>If you need any assistance or have questions, please contact our customer support:</p>
+    <div class="d-flex">
+    <p class="mr-5 font-xs"><strong>Phone:</strong> +91 1234567890</p>
+    <p class=" font-xs"><strong>Email:</strong> support@dashtiny.com</p>
+  </div>
+  </small>
+</div>
+      <!-- Print Button -->
+      <div class="text-center mt-5 print-button">
+        <button class="btn btn-primary" (click)="printBookingConfirmation()">Print Ticket</button>
+      </div>
+    </div>
+  </div>
+</div>

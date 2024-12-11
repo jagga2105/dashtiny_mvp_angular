@@ -1,0 +1,100 @@
+.booking-confirmation {
+  margin: 0 auto;
+}
+
+.card {
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  max-height: 40px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.booking-details p,
+.ticket-info p {
+  margin-bottom: 0.5rem;
+}
+
+.qr-code {
+  text-align: center;
+}
+
+.print-button {
+  margin-top: 2rem;
+}
+
+/* Styles for print */
+@media print {
+  .booking-details .col-md-6,
+  .ticket-info .col-md-6 {
+    width: 50%;
+    float: left;
+    box-sizing: border-box;
+  }
+
+  /* Clear floats to prevent overlapping */
+  .booking-details::after,
+  .ticket-info::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .print-button {
+    display: none;
+  }
+}
+.booking-confirmation .card {
+  border: 2px solid #007bff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.booking-confirmation .card-header {
+  border-bottom: 2px solid #007bff;
+}
+
+.booking-confirmation .card-body {
+  font-size: 16px;
+}
+
+.booking-confirmation .logo {
+  width: 100px;
+}
+
+.booking-confirmation .ticket-info,
+.booking-confirmation .travel-guidelines,
+.booking-confirmation .other-support {
+  margin-bottom: 20px;
+}
+
+.booking-confirmation .card-title {
+  font-size: 20px;
+  color: #007bff;
+}
+
+.booking-confirmation .qr-code img {
+  width: 150px;
+  height: 150px;
+  border: 2px solid #007bff;
+  border-radius: 10px;
+}
+.font-xs {
+  font-size: 12px !important;
+}
+
+
+
+

@@ -1,0 +1,116 @@
+<div class="user-card">
+  <div class="card">
+    <!-- Verified Badge -->
+    <span class="verified-badge" *ngIf="user.verified">Verified</span>
+
+    <!-- User Image -->
+    <img class="card-img-top" [src]="user.imageUrl" alt="User Image">
+
+    <div class="card-body">
+      <h5 class="card-title">{{ user.name }}</h5>
+
+      <!-- Button to Open Upcoming Getaways Modal -->
+      <div class="d-flex w-100 justify-content-center bottom-0 position-absolute pb-1">
+        <!-- Button to Open Past Experiences Modal -->
+        <button class="btn btn-outline-primary d-flex" (click)="openPastExperiencesModal()"
+          (mouseover)="onMouseEnter($event)" (mouseout)="onMouseLeave($event)">
+          <span class="material-symbols-outlined notranslate" (mouseover)="onMouseEnter($event)" (mouseout)="onMouseLeave($event)">
+            travel_explore
+            <span class="tooltip">View Past Experiences</span>
+          </span>
+          <span class="tooltip">View Past Experiences</span>
+        </button>
+
+        <!-- Button to Open Upcoming Getaways Modal -->
+        <button class="btn btn-outline-primary d-flex" (click)="openUpcomingModal()"
+          (mouseover)="onMouseEnter($event)" (mouseout)="onMouseLeave($event)">
+          <span class="material-symbols-outlined notranslate" (mouseover)="onMouseEnter($event)" (mouseout)="onMouseLeave($event)">
+            follow_the_signs
+            <span class="tooltip">View Upcoming Getaways</span>
+
+          </span>
+
+          <span class="tooltip">View Upcoming Getaways</span>
+        </button>
+
+        <!-- Button to Connect with User -->
+        <button class="btn btn-outline-primary d-flex" (click)="connectWithUser(user)"
+          (mouseover)="onMouseEnter($event)" (mouseout)="onMouseLeave($event)">
+          <span class="material-symbols-outlined notranslate" (mouseover)="onMouseEnter($event)" (mouseout)="onMouseLeave($event)">
+            person_add
+            <span class="tooltip">Connect with User</span>
+          </span>
+          <span class="tooltip">Connect with User</span>
+        </button>
+
+        <!-- Button to Follow User -->
+        <button class="btn btn-outline-primary d-flex" (click)="followUser(user)"
+          (mouseover)="onMouseEnter($event)" (mouseout)="onMouseLeave($event)">
+          <span class="material-symbols-outlined notranslate" (mouseover)="onMouseEnter($event)" (mouseout)="onMouseLeave($event)">
+            favorite
+            <span class="tooltip">Follow User</span>
+
+          </span>
+          <span class="tooltip">Follow User</span>
+        </button>
+
+        <!-- Button to View Upcoming Events -->
+        <button class="btn btn-outline-primary d-flex" (click)="openUpcomingModal()"
+          (mouseover)="onMouseEnter($event)" (mouseout)="onMouseLeave($event)">
+          <span class="material-symbols-outlined notranslate" (mouseover)="onMouseEnter($event)" (mouseout)="onMouseLeave($event)">
+            badge
+            <span class="tooltip">View Profile</span>
+          </span>
+          <span class="tooltip">View Profile</span>
+        </button>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+<!-- Upcoming Getaways Modal -->
+<div class="modal" id="upcomingTripsModal" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Upcoming Getaways</h5>
+        <button type="button" class="btn-close" (click)="closeUpcomingModal()"></button>
+      </div>
+      <div class="modal-body">
+        <ul>
+          <li *ngFor="let trip of user.upcomingTrips">
+            {{ trip.destination }} - {{ trip.startDate | date: 'mediumDate' }} to {{ trip.endDate | date: 'mediumDate' }}
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeUpcomingModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Past Experiences Modal -->
+<div class="modal" id="pastExperiencesModal" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Past Experiences</h5>
+        <button type="button" class="btn-close" (click)="closePastExperiencesModal()"></button>
+      </div>
+      <div class="modal-body">
+        <ul>
+          <li *ngFor="let experience of user.pastExperiences">
+            {{ experience.title }} - {{ experience.description }}
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closePastExperiencesModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+

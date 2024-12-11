@@ -1,0 +1,56 @@
+.cab-card{
+    padding-top:20px;
+    padding-bottom:20px;
+    background-color: #FFF;
+box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.40);
+border-radius:20px;
+}
+.d-flex{
+    display: flex;
+    flex-direction: row;
+}
+p{
+    color:black;
+    font-family:var(--font-family-primary);
+}
+.cab-details{
+    margin-left:20px;
+}
+.cab-price{
+    margin-left: auto;
+    margin-right:20px;
+}
+.cab-name{
+    font-size: 25px;
+  
+font-weight: 600;
+}
+.distance,.cancel-pickup{
+font-size: 14px;
+gap:5px;
+font-weight: 500;
+}
+.rating-fuel-type p{
+    font-size: 16px;
+
+font-weight: 500;
+}
+.rating,.fuel-type{
+gap:5px;
+}
+.price{
+    font-size: 25px;
+
+font-weight: 600;
+}
+.book-now{
+    border-radius: 25px;
+background-color: #3D3B3B;
+padding:7px 35px;
+p{
+    font-size: 14px;
+color: white;
+font-weight: 600;
+margin:auto auto;
+}
+}

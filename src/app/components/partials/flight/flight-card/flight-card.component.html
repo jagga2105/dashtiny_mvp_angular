@@ -1,0 +1,87 @@
+<div *ngIf="flightForm.tripType == 'roundTrip'">
+
+    <div class="booking-card">
+
+
+        <div class="row px-3">
+            <div class="col-10">
+                <div class="d-flex py-2">
+                <section class="booking-name d-flex align-items-center">
+                    <img src="../../assets/airlines/0S.png" alt="air_india" width="64px">
+                    <p class="booking-name">Air India</p>
+                </section>
+
+                <section class="booking-details ml-5 d-flex align-items-center">
+                    <p class="city">{{ extractAirportCode(flightForm.departureCity) }}</p>
+                    <p class="ml-3 time">19:05</p>
+                    <div class="d-flex align-items-center ml-3">
+                        <p>2h 20m</p>
+                        <div class="line"></div>
+                        <p>1 stop</p>
+                    </div>
+                    <p class="ml-3 time">21:25</p>
+                    <p class="ml-4 city">{{ extractAirportCode(flightForm.arrivalCity) }}</p>
+                </section>
+            </div>
+            <div class="d-flex py-2">
+                <section class="booking-name d-flex align-items-center">
+                    <img src="../../assets/airlines/49.png" alt="air_india" width="64px">
+                    <p class="booking-name">Air India</p>
+                </section>
+
+                <section class="booking-details ml-5 d-flex align-items-center">
+                    <p class="city">BAN</p>
+                    <p class="ml-3 time">21:25</p>
+
+                    <div class="d-flex align-items-center ml-3">
+                        <p>2h 20m</p>
+                        <div class="line"></div>
+                        <p>1 stop</p>
+                    </div>
+                    <p class="ml-3 time">19:05</p>
+                    <p class="ml-4 city">DEL</p>
+                </section>
+            </div>
+
+            </div>
+            <div class="col-2 row-left-1 px-0 d-flex flex-column align-items-center justify-content-center py-3 py-3">
+                <i class="text-dark">8 deals from</i>
+                <p class="time"><b>Rs 4375</b></p>
+            <button class="btn btn-primary" (click)="onBookNow(flight)">View Details</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<div *ngIf="flightForm.tripType == 'oneWay'">
+  <!-- Assuming this code is within a component template (e.g., flight-list.component.html) -->
+  <div class="booking-card">
+    <div class="row px-3">
+      <div class="col-10 d-flex">
+        <div class="d-flex py-2">
+          <section class="booking-name d-flex align-items-center  h-100">
+            <img [src]="flight.airlineLogo" alt="airline" width="64px">
+            <p class="booking-name">{{ flight.airlineName }}</p>
+          </section>
+
+          <section class="booking-details ml-5 d-flex align-items-center">
+            <p class="city">{{ extractAirportCode(flightForm.departureCity) }}</p>
+            <p class="ml-3 time">{{ flight.departureTime }}</p>
+            <div class="d-flex align-items-center ml-3">
+              <p>{{ flight.duration }}</p>
+              <div class="line"></div>
+              <p>{{ flight.stops }} stop</p>
+            </div>
+            <p class="ml-3 time">{{ flight.arrivalTime }}</p>
+            <p class="ml-4 city">{{ extractAirportCode(flightForm.arrivalCity) }}</p>
+          </section>
+        </div>
+      </div>
+      <div class="col-2 row-left-1 px-0 d-flex flex-column align-items-center justify-content-center py-3 py-3">
+        <i class="text-dark">{{ flight.price }}</i>
+        <button class="btn btn-primary" (click)="onBookNow(flight)">View Details</button>
+      </div>
+    </div>
+  </div>
+</div>

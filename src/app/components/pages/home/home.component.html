@@ -1,0 +1,649 @@
+<div class="zoom-container" *ngIf="!isLoggedIn()">
+  <div class="image-wrapper">
+    <img src="../../../../assets/home.jpeg" alt="Image">
+  </div>
+  <div class="content-overlay d-flex flex-column align-items-center py-3">
+    <h2>
+      Dashtiny: Find Your Perfect Getaway & Connect
+    </h2>
+    <section class="container mt-2 px-0">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="text-center">Dashtiny curates getaways just for you, connecting you with hidden gems and fellow
+            travelers who share your wanderlust.</p>
+
+        </div>
+        <!-- <div class="col-md-12 justify-content-center align-items-center">
+          <h3 class="text-center my-2">Your one-stop shop for</h3>
+
+        </div> -->
+      </div>
+      <div class="container py-2">
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <div class="card h-100 shadow-sm border-custom-home rounded">
+              <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                <span class="material-icons text-primary display-4 mb-3">explore</span>
+                <h5>Effortless Getaway Planning</h5>
+                <p class="card-text text-center">Let Dashtiny handle the details. Discover your perfect getaway with
+                  ease.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="card h-100 shadow-sm border-custom-home rounded">
+              <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                <span class="material-icons text-primary display-4 mb-3">star</span>
+                <h5>Unique Experiences</h5>
+                <p class="card-text text-center">Go beyond the tourist traps. Explore hidden gems curated by travel
+                  enthusiasts.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="card h-100 shadow-sm border-custom-home rounded">
+              <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                <span class="material-icons text-primary display-4 mb-3">group</span>
+                <h5>Connect with Fellow Explorers</h5>
+                <p class="card-text text-center">Find your travel tribe! Share experiences and build lasting connections
+                  on Dashtiny.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-md-6 mb-3">
+            <div class="card h-100 shadow-sm border-custom-home rounded">
+              <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                <span class="material-icons text-primary display-4 mb-3">thumb_up_alt</span>
+                <h5>Personalized Getaway Recommendations</h5>
+                <p class="card-text text-center">Dashtiny learns your preferences and suggests getaways that tick all
+                  your boxes.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div class="card h-100 shadow-sm border-custom-home rounded">
+              <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                <span class="material-icons text-primary display-4 mb-3">fingerprint</span>
+                <h5>Unique Experiences Curated by Travel Enthusiasts</h5>
+                <p class="card-text text-center">Discover hidden corners of the world, curated by passionate travelers
+                  like you.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col text-center">
+            <div class="card h-100 shadow-sm border-custom-home rounded">
+              <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                <span class="material-icons text-primary display-4 mb-3">public</span>
+                <h5>A Community of Passionate Explorers</h5>
+                <p class="card-text text-center">Join the Dashtiny community and connect with fellow wanderlusters.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col d-flex mt-3 align-items-center justify-content-center text-center">
+            <button class="btn btn-primary d-flex justify-content-center align-items-center" data-toggle="modal"
+              data-target="#signupModal"><i class="material-icons mr-3">person_add</i>Sign up</button>
+
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+</div>
+
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <!-- Sign up form content here -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="row">
+          <section class="col-3 border-right-1">
+            <h5>Create your profile</h5>
+            <p>Complete this 5 step process to complete your profile.</p>
+            <div class="stepper d-flex flex-column mt-5 ml-2">
+              <div class="d-flex mb-1 step" *ngFor="let step of steps; let i = index"
+                [class.active]="currentStep === i + 1" (click)="goToStep(i + 1)">
+                <div class="d-flex flex-column pr-4 align-items-center">
+                  <div class="rounded-circle py-2 px-3 bg-primary text-white mb-1 step-number">{{ i + 1 }}</div>
+                  <div class="line h-100" *ngIf="i < steps.length - 1"></div>
+                </div>
+                <div>
+                  <h5 class="text-dark font-m">{{ step.title }}</h5>
+                  <p class="lead text-muted pb-3">{{ step.description }}</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="col-9">
+            <div *ngIf="currentStep === 1">
+              <!-- Content for Step 1: Basic Information -->
+              <h3>Step 1: Basic Information</h3>
+              <form *ngIf="currentStep === 1" (ngSubmit)="nextStep()">
+                <hr>
+                <div class="row">
+                  <div class="form-group col-6">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" class="form-control" [(ngModel)]="profile.name" name="name" required>
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob" class="form-control" [(ngModel)]="profile.dob" name="dob" required>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="form-group col-6">
+                    <label>Gender</label>
+                    <div class="d-flex">
+                      <label class="custom-radio mr-3">
+                        <input type="radio" name="gender" [(ngModel)]="profile.gender" value="male" required>
+                        <img src="../../../../assets/male.png" alt="Male">
+                        <span>Male</span>
+                      </label>
+                      <label class="custom-radio mr-3">
+                        <input type="radio" name="gender" [(ngModel)]="profile.gender" value="female" required>
+                        <img src="../../../../assets/female.png" alt="Female">
+                        <span>Female</span>
+                      </label>
+                      <label class="custom-radio">
+                        <input type="radio" name="gender" [(ngModel)]="profile.gender" value="trans" required>
+                        <img src="../../../../assets/transgender.png" alt="trans">
+                        <span>Other</span>
+                      </label>
+                    </div>
+                  </div>
+
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="form-group col-6">
+                    <label for="email">Email address</label>
+                    <div class="input-group">
+                      <input type="email" id="email" class="form-control" [(ngModel)]="profile.email" name="email"
+                        [disabled]="emailVerified" required>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="verifyEmail()"
+                          *ngIf="!emailVerified && !showEmailOtpField">Verify</button>
+                        <span class="input-group-text text-success" *ngIf="emailVerified">Verified</span>
+                      </div>
+                    </div>
+                    <div *ngIf="showEmailOtpField">
+                      <label for="emailOtp">Enter OTP</label>
+                      <div class="input-group">
+                        <input type="text" id="emailOtp" class="form-control" [(ngModel)]="profile.emailOtp"
+                          name="emailOtp" required>
+                        <div class="input-group-append">
+                          <button type="button" class="btn btn-primary" (click)="confirmEmailOtp()">OK</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="phone">Phone number</label>
+                    <div class="input-group">
+                      <input type="text" id="phone" class="form-control" [(ngModel)]="profile.phone" name="phone"
+                        [disabled]="phoneVerified" required>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="verifyPhone()"
+                          *ngIf="!phoneVerified && !showPhoneOtpField">Verify</button>
+                        <span class="input-group-text text-success" *ngIf="phoneVerified">Verified</span>
+                      </div>
+                    </div>
+                    <div *ngIf="showPhoneOtpField">
+                      <label for="phoneOtp">Enter OTP</label>
+                      <div class="input-group">
+                        <input type="text" id="phoneOtp" class="form-control" [(ngModel)]="profile.phoneOtp"
+                          name="phoneOtp" required>
+                        <div class="input-group-append">
+                          <button type="button" class="btn btn-primary" (click)="confirmPhoneOtp()">OK</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="form-group col-6">
+                    <label for="street-address">Street Address</label>
+                    <input type="text" class="form-control" id="street-address" [(ngModel)]="profile.streetAddress">
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="city">City</label>
+                    <input type="text" class="form-control" id="city" [(ngModel)]="profile.city">
+                  </div>
+                  <div class="form-group col-4">
+                    <label for="state">State/Province</label>
+                    <input type="text" class="form-control" id="state" [(ngModel)]="profile.state">
+                  </div>
+                  <div class="form-group col-4">
+                    <label for="zip">Zip/Postal Code</label>
+                    <input type="text" class="form-control" id="zip" [(ngModel)]="profile.zip">
+                  </div>
+                  <div class="form-group col-4">
+                    <label for="country">Country</label>
+                    <input type="text" class="form-control" id="country" [(ngModel)]="profile.country">
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary next-btn">Next</button>
+              </form>
+            </div>
+            <div *ngIf="currentStep === 2">
+              <!-- Content for Step 2: Travel Preferences -->
+              <h3>Step 2: Travel Preferences <small>You can select multiple options</small></h3>
+
+              <form>
+                <hr>
+                <div class="form-group">
+                  <label>What type of traveler are you?</label>
+                  <div class="custom-multi-select">
+                    <div *ngFor="let option of travelerTypes" (click)="toggleSelection('travelerTypes', option)"
+                      [class.selected]="isSelected('travelerTypes', option)">
+                      <img [src]="option.img" alt="{{ option.text }}">
+                      <p>{{ option.text }}</p>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                  <label>What is your preferred type of getaway?</label>
+                  <div class="custom-multi-select">
+                    <div *ngFor="let option of getawayTypes" (click)="toggleSelection('getawayTypes', option)"
+                      [class.selected]="isSelected('getawayTypes', option)">
+                      <img [src]="option.img" alt="{{ option.text }}">
+                      <p>{{ option.text }}</p>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                  <label>How do you prefer to travel?</label>
+                  <div class="custom-multi-select">
+                    <div *ngFor="let option of travelModes" (click)="toggleSelection('travelModes', option)"
+                      [class.selected]="isSelected('travelModes', option)">
+                      <img [src]="option.img" alt="{{ option.text }}">
+                      <p>{{ option.text }}</p>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                  <label>What type of accommodation do you prefer?</label>
+                  <div class="custom-multi-select">
+                    <div *ngFor="let option of accommodationTypes"
+                      (click)="toggleSelection('accommodationTypes', option)"
+                      [class.selected]="isSelected('accommodationTypes', option)">
+                      <img [src]="option.img" alt="{{ option.text }}">
+                      <p>{{ option.text }}</p>
+                    </div>
+                  </div>
+                </div>
+                <button type="button" class="btn btn-primary next-btn mt-3" (click)="nextStep()">Next</button>
+              </form>
+            </div>
+            <div *ngIf="currentStep === 3">
+              <!-- Content for Step 3: Interests and Activities -->
+              <h3>Step 3: Interests and Activities</h3>
+              <form>
+                <hr>
+                <div class="form-group">
+                  <label>What are your interests?</label>
+                  <div class="custom-multi-select">
+                    <div *ngFor="let option of interests" (click)="toggleSelection('interests', option)"
+                      [class.selected]="isSelected('interests', option)">
+                      <img [src]="option.img" alt="{{ option.text }}">
+                      <p>{{ option.text }}</p>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                  <label>What activities do you enjoy on a trip?</label>
+                  <div class="custom-multi-select">
+                    <div *ngFor="let option of activities" (click)="toggleSelection('activities', option)"
+                      [class.selected]="isSelected('activities', option)">
+                      <img [src]="option.img" alt="{{ option.text }}">
+                      <p>{{ option.text }}</p>
+                    </div>
+                  </div>
+                </div>
+                <button type="button" class="btn btn-primary next-btn mt-3" (click)="nextStep()">Next</button>
+              </form>
+            </div>
+            <div *ngIf="currentStep === 4">
+              <!-- Content for Step 4: Travel Habits -->
+              <h3>Step 4: Travel Habits</h3>
+              <form>
+                <hr>
+                <div class="row">
+                  <div class="form-group col-4">
+                    <label>What is your usual travel budget?</label>
+                    <input type="number" class="form-control" placeholder="Enter your budget in INR">
+                  </div>
+                  <div class="form-group col-4">
+                    <label>How often do you travel?</label>
+                    <select class="form-control">
+                      <option>Rarely</option>
+                      <option>Once a year</option>
+                      <option>Multiple times a year</option>
+                      <option>Monthly</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-4">
+                    <label>Preferred travel season</label>
+                    <select class="form-control">
+                      <option>Spring</option>
+                      <option>Summer</option>
+                      <option>Fall</option>
+                      <option>Winter</option>
+                    </select>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="form-group col-6">
+                    <label>Smoking habits</label>
+                    <select class="form-control" [(ngModel)]="travelHabits.smoking" name="smoking">
+                      <option value="">Select smoking habits</option>
+                      <option value="Non-smoker">Non-smoker</option>
+                      <option value="Occasional smoker">Occasional smoker</option>
+                      <option value="Regular smoker">Regular smoker</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-6">
+                    <label>Drinking habits</label>
+                    <select class="form-control" [(ngModel)]="travelHabits.drinking" name="drinking">
+                      <option value="">Select drinking habits</option>
+                      <option value="Non-drinker">Non-drinker</option>
+                      <option value="Occasional drinker">Occasional drinker</option>
+                      <option value="Regular drinker">Regular drinker</option>
+                    </select>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="form-group col-3">
+                    <label>Accommodation Preferences</label>
+                    <select class="form-control" formControlName="accommodation">
+                      <option value="">Select accommodation preference</option>
+                      <option value="Budget">Budget</option>
+                      <option value="Mid-range">Mid-range</option>
+                      <option value="Luxury">Luxury</option>
+                      <option value="Eco-friendly">Eco-friendly</option>
+                      <option value="Boutique">Boutique</option>
+                      <option value="Hostel">Hostel</option>
+                      <option value="Airbnb">Airbnb</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-3">
+                    <label>Transport Preferences</label>
+                    <select class="form-control" formControlName="transport">
+                      <option value="">Select transport preference</option>
+
+                      <option value="Public transport">Public transport</option>
+                      <option value="Rental car">Rental car</option>
+                      <option value="Taxi/Uber">Taxi/Uber</option>
+                      <option value="Biking">Biking</option>
+                      <option value="Walking">Walking</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-3">
+                    <label>Booking Preferences</label>
+                    <select class="form-control" formControlName="booking">
+                      <option value="">Select booking preference</option>
+
+                      <option value="Last-minute bookings">Last-minute bookings</option>
+                      <option value="Well in advance">Well in advance</option>
+                      <option value="Package deals">Package deals</option>
+                      <option value="DIY planning">DIY planning</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-3">
+                    <label>Packing Style</label>
+                    <select class="form-control" formControlName="packing">
+                      <option value="">Select packing style</option>
+
+                      <option value="Light packer">Light packer</option>
+                      <option value="Over packer">Over packer</option>
+                      <option value="Minimalist">Minimalist</option>
+                      <option value="Tech-savvy (gadgets)">Tech-savvy (gadgets)</option>
+                      <option value="Family packer">Family packer</option>
+                    </select>
+                  </div>
+                </div>
+                <hr>
+
+                <div class="row">
+                  <div class="form-group col-12">
+                    <label>Favorite Destinations<small>(You can write multiple location seperated by comma)</small></label>
+                    <textarea class="form-control" rows="3" formControlName="favoriteDestinations"></textarea>
+                  </div>
+                </div>
+                <button type="button" class="btn btn-primary next-btn mt-3" (click)="nextStep()">Next</button>
+              </form>
+            </div>
+            <div *ngIf="currentStep === 5">
+              <!-- Content for Step 5: Personal Preferences -->
+              <h3>Step 5: Personal Preferences</h3>
+              <form (ngSubmit)="finish()">
+                <div class="form-group">
+                  <label for="favoriteDestinations">What are your favorite travel destinations?</label>
+                  <div *ngFor="let destination of favoriteDestinations; let i = index" class="input-group mb-3">
+                    <input type="text" class="form-control" id="favoriteDestinations" formControlName="favoriteDestinations">
+                    <div class="input-group-append">
+                      <button class="btn btn-danger" type="button" (click)="removeFavoriteDestination(i)">Remove</button>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary" type="button" (click)="addFavoriteDestination()">Add Destination</button>
+                </div>
+
+                <!-- Memorable Travel Experience -->
+                <div class="form-group">
+                  <label for="memorableExperience">What is the most memorable travel experience you've had?</label>
+                  <textarea class="form-control" id="memorableExperience" formControlName="memorableExperience" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary  next-btn">Finish</button>
+              </form>
+            </div>
+          </section>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!--====================================
+=            Hero Section            =
+=====================================-->
+<div *ngIf="isLoggedIn()">
+<section class="section gradient-banner no-animate">
+  <div class="shapes-container">
+    <div class="shape" data-aos="fade-down-left" data-aos-duration="1500" data-aos-delay="100"></div>
+    <div class="shape" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100"></div>
+    <div class="shape" data-aos="fade-up-right" data-aos-duration="1000" data-aos-delay="200"></div>
+    <div class="shape" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"></div>
+    <div class="shape" data-aos="fade-down-left" data-aos-duration="1000" data-aos-delay="100"></div>
+    <div class="shape" data-aos="fade-down-left" data-aos-duration="1000" data-aos-delay="100"></div>
+    <div class="shape" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="300"></div>
+    <div class="shape" data-aos="fade-down-right" data-aos-duration="500" data-aos-delay="200"></div>
+    <div class="shape" data-aos="fade-down-right" data-aos-duration="500" data-aos-delay="100"></div>
+    <div class="shape" data-aos="zoom-out" data-aos-duration="2000" data-aos-delay="500"></div>
+    <div class="shape" data-aos="fade-up-right" data-aos-duration="500" data-aos-delay="200"></div>
+    <div class="shape" data-aos="fade-down-left" data-aos-duration="500" data-aos-delay="100"></div>
+    <div class="shape" data-aos="fade-up" data-aos-duration="500" data-aos-delay="0"></div>
+    <div class="shape" data-aos="fade-down" data-aos-duration="500" data-aos-delay="0"></div>
+    <div class="shape" data-aos="fade-up-right" data-aos-duration="500" data-aos-delay="100"></div>
+    <div class="shape" data-aos="fade-down-left" data-aos-duration="500" data-aos-delay="0"></div>
+  </div>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6 order-2 order-md-1 text-center text-md-left">
+        <h1 class="text-dark font-weight-bold mb-4">Unlock Your Next Adventure with Dashtiny</h1>
+        <p class="text-dark mb-5">Where Wanderlust Meets Expertise: Explore the World with Confidence.</p>
+        <a class="btn btn-primary me-2" href="#">Bookings</a>
+        <a class="btn btn-primary me-2" href="#">Explore DAIna</a>
+        <a class="btn btn-primary me-2" href="#">My Community</a>
+        <a class="btn btn-primary" href="#">Post a Getaway</a>
+      </div>
+      <div class="col-md-6 text-center order-1 order-md-2">
+        <img class="img-fluid no-animate" src="../../assets/home-login.png" alt="screenshot">
+      </div>
+    </div>
+  </div>
+</section>
+<!--====  End of Hero Section  ====-->
+
+<section class="section pt-0 position-relative pull-top">
+  <div class="container">
+    <div class="rounded shadow p-5 bg-white">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 mt-5 mt-md-0 text-center">
+          <span class="text-dark material-symbols-outlined notranslate h1">
+            event_note
+          </span>
+          <h3 class="mt-4 text-capitalize h5">Plan your Getaway</h3>
+          <p class="regular text-muted">Select from a variety of exceptional travel packages or create your own personalized itinerary for the perfect getaway.</p>
+        </div>
+        <div class="col-lg-4 col-md-6 mt-5 mt-md-0 text-center">
+          <span class="text-dark h1 material-symbols-outlined notranslate">
+            psychology
+          </span>
+          <h3 class="mt-4 text-capitalize h5">Get AI Recommended Suggestions</h3>
+          <p class="regular text-muted">Receive tailored travel suggestions based on your preferences from our advanced AI recommendation system.</p>
+        </div>
+        <div class="col-lg-4 col-md-12 mt-5 mt-lg-0 text-center">
+          <span class="text-dark h1 material-symbols-outlined notranslate">
+            book_online
+          </span>
+          <h3 class="mt-4 text-capitalize h5">Book or Create Getaways</h3>
+          <p class="regular text-muted">Easily book recommended trips or create and customize your own travel adventures effortlessly.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--==================================
+=            Feature Grid            =
+===================================-->
+<section class="feature section pt-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 ml-auto justify-content-center">
+        <!-- Feature Mockup -->
+        <div class="image-content" data-aos="fade-right">
+          <img class="img-fluid no-animate" src="../../assets/guide.jpeg" alt="guide">
+        </div>
+      </div>
+      <div class="col-lg-6 mr-auto align-self-center">
+        <div class="feature-content">
+          <!-- Feature Title -->
+          <h2>Personalized Adventures, Guided by Experts</h2>
+          <!-- Feature Description -->
+          <p class="desc">Discover the world's wonders with our seasoned travel guides by your side. From ancient ruins to bustling markets, our local experts will lead you on unforgettable journeys filled with history, culture, and hidden gems.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="feature section pt-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 ml-auto align-self-center">
+        <div class="feature-content">
+          <!-- Feature Title -->
+          <h2>Tailored Travel Experiences Crafted Just for You</h2>
+          <!-- Feature Description -->
+          <p>Let our travel agencies transform your dreams into reality. Whether you're seeking a luxurious escape or an off-the-beaten-path adventure, our team of professionals will curate the perfect itinerary to suit your tastes and preferences.</p>
+        </div>
+      </div>
+      <div class="col-lg-6 mr-auto justify-content-center">
+        <!-- Feature mockup -->
+        <div class="image-content" data-aos="fade-left">
+          <img class="img-fluid no-animate" src="../../assets/travelagency.jpeg" alt="travel agency">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="feature section pt-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 ml-auto justify-content-center">
+        <!-- Feature Mockup -->
+        <div class="image-content" data-aos="fade-right">
+          <img class="img-fluid no-animate" src="../../assets/driver.jpeg" alt="driver">
+        </div>
+      </div>
+      <div class="col-lg-6 mr-auto align-self-center">
+        <div class="feature-content">
+          <!-- Feature Title -->
+          <h2>Seamless Transfers, Expert Drivers, Effortless Journeys</h2>
+          <!-- Feature Description -->
+          <p class="desc">Sit back, relax, and enjoy the ride with our experienced drivers at the wheel. From airport pickups to scenic road trips, our chauffeurs ensure smooth and safe travels, allowing you to focus on soaking in the sights and sounds.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="feature section pt-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 ml-auto align-self-center">
+        <div class="feature-content">
+          <!-- Feature Title -->
+          <h2>Simplify Your Travel Plans with Hassle-Free Visa Assistance</h2>
+          <!-- Feature Description -->
+          <p>Navigate the complexities of travel documents with ease. Our visa services streamline the application process, providing comprehensive guidance and support to ensure that your journey starts off on the right foot.</p>
+        </div>
+      </div>
+      <div class="col-lg-6 mr-auto justify-content-center">
+        <!-- Feature mockup -->
+        <div class="image-content" data-aos="fade-left">
+          <img class="img-fluid no-animate" src="../../assets/visa.jpeg" alt="visa assistance">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--====  End of Feature Grid  ====-->
+
+<section class="call-to-action-app section bg-blue">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2>Get In Touch</h2>
+        <p>Have questions or ready to start planning your next adventure? Our team is here to help! Reach out to us today to discuss your travel preferences, get personalized recommendations, and embark on a journey of a lifetime.</p>
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <a href="#" class="btn btn-rounded-icon">
+              <i class="ti-apple"></i>
+              Get in touch
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</div>

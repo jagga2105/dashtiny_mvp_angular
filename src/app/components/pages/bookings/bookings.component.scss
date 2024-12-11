@@ -1,0 +1,98 @@
+.hero-image {
+  background-size: cover;
+  background-image: linear-gradient(to top, #ff7b2496 0%, #2a9df48a 100%);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 48s ease infinite;
+    -moz-animation: AnimationName 48s ease infinite;
+    -o-animation: AnimationName 48s ease infinite;
+    animation: AnimationName 48s ease infinite;
+
+
+  background-position: center;
+  background-repeat: no-repeat;
+  /* height: 500px; */
+  color: #000 !important;
+  padding: 20px;
+  text-align: center;
+    .tab-content>.tab-pane {
+        display: block;
+        color: var(--text-color-black);
+    }
+    .nav-tabs{
+      border: none;
+    .nav-item{
+        background: var(--text-color-white);
+        border-radius: 25px;
+
+    }
+    .nav-link {
+        display: flex;
+        align-items: center;
+        color:#000;
+
+        i {
+            margin-right: 10px;
+        }
+    }
+
+    .nav-link {
+        color: var(--text-color-black);
+    }
+
+    .nav-link.active {
+        background: var(--primary-color);
+        color: var(--text-color-white) !important;
+        border-radius: 25px;
+        height:100%;
+        border:none;
+        i, b {
+          color:#fff;
+        }
+    }
+}
+.tab-content {
+    // border:1px solid var(--primary-color);
+    // background: var(--transparent-white);
+    // padding: 15px;
+}
+
+
+}
+.chat-btn {
+  width: 60px;
+  padding: 9px;
+  overflow: hidden;
+    img {
+        width:100%;
+    }
+}
+.chat-btn:hover {
+  border-radius:10px;
+}
+.nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
+  border: 1px solid #fff0;
+}
+@-webkit-keyframes AnimationName {
+  0%{background-position:88% 0%}
+  50%{background-position:13% 100%}
+  100%{background-position:88% 0%}
+}
+@-moz-keyframes AnimationName {
+  0%{background-position:88% 0%}
+  50%{background-position:13% 100%}
+  100%{background-position:88% 0%}
+}
+@-o-keyframes AnimationName {
+  0%{background-position:88% 0%}
+  50%{background-position:13% 100%}
+  100%{background-position:88% 0%}
+}
+@keyframes AnimationName {
+  0%{background-position:88% 0%}
+  50%{background-position:13% 100%}
+  100%{background-position:88% 0%}
+}
+.modal.show {
+  background-color: rgba(0, 0, 0, .5);
+}

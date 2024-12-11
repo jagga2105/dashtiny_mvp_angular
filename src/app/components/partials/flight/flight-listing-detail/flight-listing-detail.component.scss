@@ -1,0 +1,58 @@
+$c-front : #2A9DF4;
+$c-back : #1D1F20;
+$c-back-light : #383838;
+$c-hilight : #FF781F;
+$s-footer-height : 3rem;
+.custom-img-card {
+    width: auto;
+    padding: 5%;
+    margin: auto;
+    max-height: 50px !important;
+}
+.btn-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: none;
+    background: none;
+    color: #007bff;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .btn-link .material-icons {
+    font-size: 24px;
+  }
+
+  .flex-1 {
+    flex: 1;
+  }
+  .booking-details-card .line {
+    width:25rem;
+  }
+  .svg-calLoader {
+    width: 230px; height: 230px;
+   transform-origin: 115px 115px;
+   animation: 2.4s linear infinite loader-spin;
+ }
+
+ .cal-loader__plane { fill: $c-hilight; }
+ .cal-loader__path { stroke: $c-front; animation: 2.4s ease-in-out infinite loader-path; }
+
+ @keyframes loader-spin {
+   to{
+     transform: rotate(360deg);
+   }
+ }
+ @keyframes loader-path {
+   0%{
+     stroke-dasharray:  0, 580, 0, 0, 0, 0, 0, 0, 0;
+   }
+   50%{
+     stroke-dasharray: 0, 450, 10, 30, 10, 30, 10, 30, 10;
+   }
+   100%{
+     stroke-dasharray: 0, 580, 0, 0, 0, 0, 0, 0, 0;
+   }
+ }
