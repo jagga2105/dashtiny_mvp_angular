@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SubmittedDataServiceService } from '../../../../submitted-data-service.service';
@@ -10,7 +10,7 @@ import { RailwayStationDataService } from '../../../../services/railways/railway
   templateUrl: './train-suggestion-form.component.html',
   styleUrls: ['./train-suggestion-form.component.scss']
 })
-export class TrainSuggestionFormComponent {
+export class TrainSuggestionFormComponent implements OnInit {
   flightForm: FormGroup;
   currentDate: string;
   filteredDepartureRailwayStations: any[] = [];
@@ -29,15 +29,13 @@ export class TrainSuggestionFormComponent {
       selectedCabinClass: ['Select an option', Validators.required],
     });
   }
-  journey = {
+  journey: any = {
+    tripType: 'oneWay',
     departureCity: '',
     arrivalCity: '',
     departureDate: '',
     returnDate: '',
-    travellers: '',
-    selectedCabin:'',
-    tripType: 'roundTrip',
-
+    travellers: ''
   };
   selectedValue: any = 1;
   selectedPassengers = '';
@@ -118,12 +116,12 @@ export class TrainSuggestionFormComponent {
     this.journey.departureCity = `(${RailwayStation.code}) ${RailwayStation.name}`;
     this.filteredDepartureRailwayStations = [];
   }
-  filterRailwayStations(event: any) {
-    const searchText = event.target.value.toLowerCase();
+  filterRailwayStations(event: Event): void {
+    const target = event.target as HTMLInputElement;
     this.filteredArrivalRailwayStations = this.railwayStation.filter((RailwayStation: RailwayStationList) => {
       return (
-        RailwayStation.code.toLowerCase().includes(searchText) ||
-        RailwayStation.name.toLowerCase().includes(searchText)
+        RailwayStation.code.toLowerCase().includes(target.value.toLowerCase()) ||
+        RailwayStation.name.toLowerCase().includes(target.value.toLowerCase())
       );
     });
   }

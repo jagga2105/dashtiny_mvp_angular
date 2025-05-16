@@ -73,7 +73,7 @@
     <img src="../../assets/dashGuru.png">
   </button>
   <div *ngIf="showChatPopup" #chatPopupModal class="modal">
-    <app-chat-popup></app-chat-popup>
+    <app-chat-popup (close)="closeChatPopup()"></app-chat-popup>
   </div>
 
 

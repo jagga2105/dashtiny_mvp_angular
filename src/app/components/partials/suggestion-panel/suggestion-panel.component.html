@@ -1,0 +1,152 @@
+<div class="suggestions-container">
+  <!-- Empty State -->
+  <div *ngIf="!itineraryData" class="empty-state">
+    <i class="material-icons">travel_explore</i>
+    <h3>Smart Booking Options</h3>
+    <p>Ask DAIna about your travel plans to see personalized suggestions for flights, hotels, activities, and more!</p>
+  </div>
+
+  <!-- Regular Content when data exists -->
+  <ng-container *ngIf="itineraryData">
+    <!-- Category Navigation with scroll buttons -->
+    <div class="category-nav-wrapper">
+      <button class="nav-scroll-btn prev" (click)="scrollCategories('left')" [class.hidden]="isScrollStart">
+        <i class="material-icons">chevron_left</i>
+      </button>
+      
+      <div class="category-nav" #categoryNav>
+        <button *ngFor="let category of categories" 
+                [class.active]="activeCategory === category.id"
+                (click)="activeCategory = category.id"
+                class="category-btn">
+          <i class="material-icons">{{category.icon}}</i>
+          <span class="nav-text">{{category.name}}</span>
+        </button>
+      </div>
+
+      <button class="nav-scroll-btn next" (click)="scrollCategories('right')" [class.hidden]="isScrollEnd">
+        <i class="material-icons">chevron_right</i>
+      </button>
+    </div>
+
+    <!-- Suggestions Content -->
+    <div class="suggestions-content">
+      <!-- Transport Options -->
+      <div *ngIf="activeCategory === 'transport'" class="transport-options">
+        <div *ngFor="let mode of transportModes" class="mode-section">
+          <h4>{{mode.type}}</h4>
+          <div class="options-grid">
+            <div *ngFor="let option of mode.options" class="option-card">
+              <div class="option-header">
+                <h5>{{option.name}}</h5>
+                <div class="rating">
+                  <i class="material-icons">star</i>
+                  <span>{{option.rating}}</span>
+                </div>
+              </div>
+              <div class="option-details">
+                <span class="duration">
+                  <i class="material-icons">schedule</i>
+                  {{option.duration}}
+                </span>
+                <span class="price">₹{{option.price}}</span>
+              </div>
+              <div class="option-features">
+                <span *ngFor="let feature of option.features" class="feature-tag">
+                  {{feature}}
+                </span>
+              </div>
+              <button class="book-btn">Book Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Accommodation Options -->
+      <div *ngIf="activeCategory === 'accommodation'" class="accommodation-options">
+        <div *ngFor="let type of accommodationTypes" class="type-section">
+          <h4>{{type.category}}</h4>
+          <div class="options-grid">
+            <div *ngFor="let hotel of type.hotels" class="option-card">
+              <img [src]="hotel.image" [alt]="hotel.name" class="hotel-image">
+              <div class="option-header">
+                <h5>{{hotel.name}}</h5>
+                <div class="rating">
+                  <i class="material-icons">star</i>
+                  <span>{{hotel.rating}}</span>
+                </div>
+              </div>
+              <div class="option-details">
+                <span class="location">
+                  <i class="material-icons">location_on</i>
+                  {{hotel.location}}
+                </span>
+                <span class="price">₹{{hotel.price}}/night</span>
+              </div>
+              <div class="amenities">
+                <span *ngFor="let amenity of hotel.amenities" class="amenity-tag">
+                  {{amenity}}
+                </span>
+              </div>
+              <button class="book-btn">View Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Activities Options -->
+      <div *ngIf="activeCategory === 'activities'" class="activities-options">
+        <div *ngFor="let category of activityCategories" class="category-section">
+          <h4>{{category.name}}</h4>
+          <div class="options-grid">
+            <div *ngFor="let activity of category.activities" class="option-card">
+              <img [src]="activity.image" [alt]="activity.name" class="activity-image">
+              <div class="option-header">
+                <h5>{{activity.name}}</h5>
+                <div class="rating">
+                  <i class="material-icons">star</i>
+                  <span>{{activity.rating}}</span>
+                </div>
+              </div>
+              <div class="option-details">
+                <span class="duration">
+                  <i class="material-icons">schedule</i>
+                  {{activity.duration}}
+                </span>
+                <span class="price">₹{{activity.price}}</span>
+              </div>
+              <button class="book-btn">Book Activity</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Entertainment Options -->
+      <div *ngIf="activeCategory === 'entertainment'" class="entertainment-options">
+        <div *ngFor="let type of entertainmentTypes" class="type-section">
+          <h4>{{type.category}}</h4>
+          <div class="options-grid">
+            <div *ngFor="let item of type.items" class="option-card">
+              <img [src]="item.image" [alt]="item.name" class="entertainment-image">
+              <div class="option-header">
+                <h5>{{item.name}}</h5>
+                <div class="rating">
+                  <i class="material-icons">star</i>
+                  <span>{{item.rating}}</span>
+                </div>
+              </div>
+              <div class="option-details">
+                <span class="time">
+                  <i class="material-icons">event</i>
+                  {{item.time}}
+                </span>
+                <span class="price">₹{{item.price}}</span>
+              </div>
+              <button class="book-btn">Get Tickets</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

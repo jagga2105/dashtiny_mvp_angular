@@ -1,0 +1,205 @@
+<div class="travel-planner">
+  <!-- Header -->
+  <div class="planner-header">
+    <h2>Create Your Travel Plan</h2>
+    <p>Fill in the details below to get personalized recommendations</p>
+  </div>
+
+  <!-- Main Form -->
+  <form [formGroup]="basicDetailsForm" class="planner-form">
+    <!-- Cities Selection -->
+    <div class="form-group cities-group">
+      <h3>
+        <mat-icon>{{sectionIcons.location}}</mat-icon> 
+        Locations
+      </h3>
+      <div class="input-row">
+        <mat-form-field appearance="fill">
+          <mat-label>Getaway Start Location</mat-label>
+          <input matInput formControlName="source" 
+                 [matAutocomplete]="sourceAuto"
+                 placeholder="Where will your journey begin?">
+          <mat-icon matPrefix>location_on</mat-icon>
+          <mat-autocomplete #sourceAuto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let city of filteredSources | async" [value]="city">
+              {{city.city}}, {{city.country}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Getaway Destination</mat-label>
+          <input matInput formControlName="destination" 
+                 [matAutocomplete]="destAuto"
+                 placeholder="Where do you want to explore?">
+          <mat-icon matPrefix>place</mat-icon>
+          <mat-autocomplete #destAuto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let city of filteredDestinations | async" [value]="city">
+              {{city.city}}, {{city.country}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+
+      <!-- Add Stopovers Section -->
+      <div class="stopovers-section">
+        <mat-form-field class="full-width">
+          <mat-label>Add Stopovers (Optional)</mat-label>
+          <mat-chip-grid #chipGrid aria-label="Stopover selection">
+            <mat-chip-row *ngFor="let stopover of stopoverTags"
+                         [removable]="true" 
+                         (removed)="removeStopover(stopover)">
+              {{stopover}}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+            <input placeholder="Add places you'd like to visit..."
+                   [matChipInputFor]="chipGrid"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   (matChipInputTokenEnd)="addStopover($event)">
+          </mat-chip-grid>
+          <mat-hint>Press Enter or comma to add location</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <!-- Itinerary Type Selection -->
+      <div class="itinerary-type-section">
+        <label class="section-label">Itinerary Type</label>
+        <mat-button-toggle-group formControlName="itineraryType">
+          <mat-button-toggle *ngFor="let type of itineraryTypes" [value]="type.value">
+            <mat-icon>{{type.icon}}</mat-icon>
+            {{type.label}}
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+    </div>
+
+    <!-- Dates Selection -->
+    <div class="form-group dates-group">
+      <h3>
+        <mat-icon>{{sectionIcons.dates}}</mat-icon> 
+        Travel Dates
+      </h3>
+      <div class="input-row">
+        <mat-form-field appearance="fill">
+          <mat-label>Departure Date</mat-label>
+          <input matInput [matDatepicker]="startPicker" 
+                 formControlName="startDate"
+                 [min]="minStartDate"
+                 [matDatepickerFilter]="startDateFilter">
+          <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+          <mat-datepicker #startPicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Return Date</mat-label>
+          <input matInput [matDatepicker]="endPicker"
+                 formControlName="endDate"
+                 [min]="minEndDate"
+                 [matDatepickerFilter]="endDateFilter">
+          <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+          <mat-datepicker #endPicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <!-- Budget Selection -->
+    <div class="form-group budget-section">
+      <h3><mat-icon>{{sectionIcons.budget}}</mat-icon> Budget</h3>
+      <div class="budget-input-group">
+        <mat-form-field appearance="fill" class="currency-select">
+          <mat-label>Currency</mat-label>
+          <mat-select formControlName="currency">
+            <mat-option *ngFor="let currency of currencies" [value]="currency.code">
+              <span class="currency-option">
+                <span class="currency-symbol">{{currency.symbol}}</span>
+                <span class="currency-code">{{currency.code}}</span>
+              </span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="budget-input">
+          <mat-label>Budget Amount</mat-label>
+          <input matInput type="number" formControlName="budgetAmount" min="0">
+          <span matSuffix class="selected-currency">{{selectedCurrencySymbol}}</span>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <!-- Interests Selection -->
+    <div class="form-group interests-section">
+      <h3><mat-icon>{{sectionIcons.interests}}</mat-icon> Interests & Activities</h3>
+      <mat-form-field appearance="fill">
+        <mat-label>Select your interests</mat-label>
+        <mat-select formControlName="interests" multiple>
+          <mat-select-trigger>
+            {{selectedInterestsText}}
+          </mat-select-trigger>
+          <mat-option *ngFor="let interest of interests" [value]="interest.value">
+            <mat-icon>{{interest.icon}}</mat-icon>
+            {{interest.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- Travel Habits -->
+    <div class="form-group habits-section">
+      <h3><mat-icon>{{sectionIcons.habits}}</mat-icon> Travel Style</h3>
+      <div class="habits-grid">
+        <div class="habit-group" *ngFor="let habit of travelHabits">
+          <mat-form-field appearance="fill">
+            <mat-label>{{habit.label}}</mat-label>
+            <mat-select [formControlName]="habit.control">
+              <mat-option *ngFor="let option of habit.options" [value]="option.value">
+                <mat-icon>{{option.icon}}</mat-icon>
+                {{option.label}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <!-- Travel Preferences -->
+    <div class="form-group preferences-group">
+      <h3><mat-icon>{{sectionIcons.preferences}}</mat-icon> Travel Preferences</h3>
+      <div class="preferences-grid">
+        <mat-form-field appearance="fill">
+          <mat-label>Trip Type</mat-label>
+          <mat-select formControlName="tripType">
+            <mat-option *ngFor="let type of tripTypes" [value]="type.value">
+              <mat-icon>{{type.icon}}</mat-icon>
+              {{type.label}}
+            </mat-option>
+          </mat-select>
+          <mat-icon matPrefix>category</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Travel Mode</mat-label>
+          <mat-select formControlName="travelMode">
+            <mat-option *ngFor="let mode of travelModes" [value]="mode.value">
+              <mat-icon>{{mode.icon}}</mat-icon>
+              {{mode.label}}
+            </mat-option>
+          </mat-select>
+          <mat-icon matPrefix>commute</mat-icon>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+
+  <!-- Action Buttons -->
+  <div class="planner-actions">
+    <button mat-button class="cancel-btn" (click)="closeDialog()">Cancel</button>
+    <button mat-flat-button 
+            class="create-btn" 
+            [disabled]="!basicDetailsForm.valid"
+            (click)="generatePrompt()">
+      Create Itinerary
+    </button>
+  </div>
+</div>

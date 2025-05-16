@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { TravelInputDialogComponent } from '../../dialogs/travel-input-dialog/travel-input-dialog.component';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,7 +16,12 @@ export class HomeComponent implements OnInit {
     'Vegetarian', 'Vegan', 'Gluten-free', 'No dietary restrictions'
   ];
 
-  constructor(private fb: FormBuilder) {
+  showChatPopup = false;
+
+  constructor(
+    private fb: FormBuilder,
+    private dialog: MatDialog
+  ) {
     this.preferencesForm = this.fb.group({
       accommodation: [''], // Initialize with empty string or default value
       transport: [''],
@@ -86,8 +94,6 @@ export class HomeComponent implements OnInit {
     'Budget', 'Mid-range', 'Luxury', 'Eco-friendly', 'Boutique', 'Hostel', 'Airbnb'
   ];
 
-
-
   transportOptions = [
     'Public transport', 'Rental car', 'Taxi/Uber', 'Biking', 'Walking'
   ];
@@ -113,10 +119,10 @@ export class HomeComponent implements OnInit {
     { text: 'Nightlife', img: '../../assets/nightlife.png' },
     { text: 'Sports', img: '../../assets/sports.png' },
     { text: 'Spa', img: '../../assets/spa-and-relaxation.png' },
-    {text: 'Events', img: '../../assets/music-fest.png' },
-  { text: 'Comedy', img: '../../assets/comedy.png' },
-  { text: 'Dance', img: '../../assets/dance.png' },
-  { text: 'Movie', img: '../../assets/cinema.png' },
+    { text: 'Events', img: '../../assets/music-fest.png' },
+    { text: 'Comedy', img: '../../assets/comedy.png' },
+    { text: 'Dance', img: '../../assets/dance.png' },
+    { text: 'Movie', img: '../../assets/cinema.png' },
   ];
 
   activities = [
@@ -204,5 +210,132 @@ export class HomeComponent implements OnInit {
   isLoggedIn(): boolean {
     const user = sessionStorage.getItem('LoggedInUser');
     return !!user;
+  }
+
+  features = [
+    {
+      icon: 'psychology',
+      title: 'AI-Powered Planning',
+      description: 'Get personalized travel recommendations and itineraries crafted by our AI assistant DAIna.'
+    },
+    {
+      icon: 'groups',
+      title: 'Travel Community',
+      description: 'Connect with like-minded travelers, share experiences, and find travel companions.'
+    },
+    {
+      icon: 'map',
+      title: 'Smart Itineraries',
+      description: 'Access optimized travel plans with local insights and real-time updates.'
+    }
+  ];
+
+  communityStats = [
+    { number: '10K', label: 'Active Members', icon: 'people' },
+    { number: '50K', label: 'Trips Planned', icon: 'flight' },
+    { number: '120', label: 'Countries Covered', icon: 'public' },
+    { number: '4.9', label: 'User Rating', icon: 'star' }
+  ];
+
+  activeMembers = [
+    { name: 'Alex Thompson', location: 'Paris, France', isOnline: true },
+    { name: 'Sarah Chen', location: 'Tokyo, Japan', isOnline: false },
+    { name: 'Marco Silva', location: 'Barcelona, Spain', isOnline: true },
+    { name: 'Priya Patel', location: 'Mumbai, India', isOnline: true },
+    { name: 'James Wilson', location: 'Sydney, Australia', isOnline: false },
+    { name: 'Maria Garcia', location: 'Mexico City, Mexico', isOnline: true },
+    { name: 'Yuki Tanaka', location: 'Kyoto, Japan', isOnline: true },
+    { name: 'David Lee', location: 'Singapore', isOnline: false }
+  ];
+
+  recentTrips = [
+    {
+      destination: 'Bali Adventure',
+      description: 'Island hopping & cultural exploration',
+      date: 'Oct 15-22, 2023',
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcSNNOlQZDtq4ApuearKcLHrnO4QAjs9xCJkZPPi1lfxCBynkETmH4wENkgHL2g0Fb8L7dyQak4kKzbTCboSiqo1naHiVpLrle2L2BUl6w',
+      members: ['Alex', 'Sarah', 'Marco'],
+      totalMembers: 6
+    },
+    {
+      destination: 'Swiss Alps Trek',
+      description: 'Mountain hiking & scenic views',
+      date: 'Sep 28-Oct 5, 2023',
+      imageUrl: 'https://assets.headwater.com/switzerland/any/001f79/image-gc.jpg',
+      members: ['John', 'Emma'],
+      totalMembers: 4
+    }
+  ];
+
+  communityHighlights = [
+    {
+      icon: 'auto_awesome',
+      title: 'AI-Powered Matching',
+      description: 'Find travel companions with similar interests'
+    },
+    {
+      icon: 'security',
+      title: 'Verified Members',
+      description: 'Safe and trusted travel community'
+    },
+    {
+      icon: 'diversity_3',
+      title: 'Group Adventures',
+      description: 'Join existing trips or create your own'
+    },
+    {
+      icon: 'local_offer',
+      title: 'Exclusive Deals',
+      description: 'Access members-only travel discounts and packages'
+    },
+    {
+      icon: 'forum',
+      title: 'Travel Forums',
+      description: 'Share tips and get advice from experienced travelers'
+    },
+    {
+      icon: 'event',
+      title: 'Local Meetups',
+      description: 'Connect with travelers in your destination'
+    },
+    {
+      icon: 'card_membership',
+      title: 'Rewards Program',
+      description: 'Earn points and unlock special perks'
+    },
+    {
+      icon: 'rate_review',
+      title: 'Verified Reviews',
+      description: 'Authentic feedback from real travelers'
+    }
+  ];
+
+  openTravelDialog(): void {
+    const dialogRef = this.dialog.open(TravelInputDialogComponent, {
+      width: '800px',
+      height: '90vh',
+      panelClass: 'travel-input-dialog',
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result?.shouldSend) {
+        this.openChatDemo();
+      }
+    });
+  }
+
+  openChatDemo(): void {
+    this.showChatPopup = true;
+  }
+
+  closeChatPopup(): void {
+    this.showChatPopup = false;
+  }
+
+  activeCardIndex: number = 0; // Track active card
+
+  setActiveCard(index: number): void {
+    this.activeCardIndex = index;
   }
 }

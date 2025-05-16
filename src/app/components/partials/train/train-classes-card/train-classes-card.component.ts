@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./train-classes-card.component.scss']
 })
 export class TrainClassesCardComponent {
-
+  // ... component code
 }

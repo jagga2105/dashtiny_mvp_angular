@@ -1,0 +1,66 @@
+// Override Material Typography
+.mat-typography {
+  line-height: normal !important;
+  
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2 !important;
+    margin: 0 0 16px !important;
+  }
+  
+  p {
+    line-height: 1.5 !important;
+    margin: 0 0 12px !important;
+  }
+}
+
+// Fix Material Form Fields
+.mat-mdc-form-field {
+  line-height: normal !important;
+  
+  .mat-mdc-form-field-infix {
+    line-height: normal !important;
+    min-height: unset !important;
+  }
+  
+  .mat-mdc-floating-label {
+    line-height: normal !important;
+  }
+  
+  input.mat-mdc-input-element,
+  textarea.mat-mdc-input-element {
+    line-height: normal !important;
+    margin: 8px 0 !important;
+  }
+}
+
+// Fix Material Buttons
+.mat-mdc-button,
+.mat-mdc-raised-button,
+.mat-mdc-outlined-button {
+  line-height: 36px !important;
+}
+
+// Fix Material Menu Items
+.mat-mdc-menu-item {
+  line-height: normal !important;
+  height: auto !important;
+  min-height: 36px !important;
+}
+
+// Fix Material List Items
+.mat-mdc-list-item {
+  line-height: normal !important;
+  height: auto !important;
+  min-height: 40px !important;
+}
+
+// Fix Material Tabs
+.mat-mdc-tab {
+  line-height: normal !important;
+  height: 48px !important;
+}
+
+// Fix Dialog Content
+.mat-mdc-dialog-content {
+  line-height: 1.5 !important;
+}

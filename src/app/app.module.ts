@@ -1,13 +1,12 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { CommonModule, DatePipe } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/partials/header/header.component';
 import { BookingsComponent } from './components/pages/bookings/bookings.component';
 import { CommunityComponent } from './components/pages/community/community.component';
-import { LoginComponent } from './components/pages/login/login.component';
 import { BookingConfirmationComponent } from './components/pages/booking-confirmation/booking-confirmation.component';
 import { DashPointsPageComponent } from './components/pages/dash-points-page/dash-points-page.component';
 import { ProfileComponent } from './components/pages/profile/profile.component';
@@ -18,14 +17,13 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlightSuggestionFormComponent } from './components/partials/flight/flight-suggestion-form/flight-suggestion-form.component';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
-import { ReactiveFormsModule } from '@angular/forms';
 import { FlightListingComponent } from './components/partials/flight/flight-listing/flight-listing.component';
 import { SubmittedDataServiceService } from './submitted-data-service.service';
 import { RangeSliderDirective } from './range-slider.directive';
 import { HotelSuggestionFormComponent } from './components/partials/hotels/hotel-suggestion-form/hotel-suggestion-form.component';
 import { HotelListingComponent } from './components/partials/hotels/hotel-listing/hotel-listing.component';
 import { HotelCardsComponent } from './components/partials/hotels/hotel-cards/hotel-cards.component';
-import {FlightCardComponent} from './components/partials/flight/flight-card/flight-card.component';
+import { FlightCardComponent } from './components/partials/flight/flight-card/flight-card.component';
 import { TrainCardComponent } from './components/partials/train/train-card/train-card.component';
 import { TrainClassesCardComponent } from './components/partials/train/train-classes-card/train-classes-card.component';
 import { CabCardComponent } from './components/partials/cab/cab-card/cab-card.component';
@@ -54,7 +52,30 @@ import { UserCardComponent } from './components/partials/community/user-card/use
 import { AuthService } from './auth.service';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 import { SuggestionFormComponent } from './components/partials/suggestion-form/suggestion-form.component';
-import {GoogleMapsModule} from '@angular/google-maps';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { ItineraryPreviewComponent } from './components/partials/itinerary-preview/itinerary-preview.component';
+import { SuggestionPanelComponent } from './components/partials/suggestion-panel/suggestion-panel.component';
+import { TravelSearchService } from './services/travel-search.service';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { TravelInputDialogComponent } from './components/dialogs/travel-input-dialog/travel-input-dialog.component';
+import { RouterModule } from '@angular/router';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatRadioModule } from '@angular/material/radio';
+import { LocationService } from './services/location.service';
+import { GenerativeAiService } from './services/generativeai.service';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { ItineraryGeneratorService } from './services/itinerary-generator.service';
+import { MatChipsModule } from '@angular/material/chips';
+import { LoginModule } from './components/pages/login/login.module';
 
 @NgModule({
   declarations: [
@@ -62,7 +83,6 @@ import {GoogleMapsModule} from '@angular/google-maps';
     HeaderComponent,
     BookingsComponent,
     CommunityComponent,
-    LoginComponent,
     BookingConfirmationComponent,
     DashPointsPageComponent,
     ProfileComponent,
@@ -87,18 +107,21 @@ import {GoogleMapsModule} from '@angular/google-maps';
     CabListingComponent,
     BusCardComponent,
     BusSelectSeatsPopupComponent,
-      flightsHomeComponent,
-      FlightComparisionComponent,
-      ChatPopupComponent,
-      FlightListingDetailComponent,
-      StarRatingComponent,
-      HireUsComponent,
-      HomeComponent,
-      HotelsHomeComponent,
-      FooterComponent,
-      UserCardComponent,
-      DashboardComponent,
-      SuggestionFormComponent
+    flightsHomeComponent,
+    FlightComparisionComponent,
+    ChatPopupComponent,
+    FlightListingDetailComponent,
+    StarRatingComponent,
+    HireUsComponent,
+    HomeComponent,
+    HotelsHomeComponent,
+    FooterComponent,
+    UserCardComponent,
+    DashboardComponent,
+    SuggestionFormComponent,
+    ItineraryPreviewComponent,
+    SuggestionPanelComponent,
+    TravelInputDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -112,9 +135,26 @@ import {GoogleMapsModule} from '@angular/google-maps';
     TypeaheadModule.forRoot(),
     HttpClientModule,
     MatAutocompleteModule,
-    GoogleMapsModule
+    MatStepperModule,
+    MatInputModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSliderModule,
+    MatFormFieldModule,
+    MatIconModule,
+    RouterModule,
+    MatSlideToggleModule,
+    MatMenuModule,
+    MatRadioModule,
+    MatExpansionModule,
+    MatChipsModule,
+    LoginModule
   ],
-  providers: [SubmittedDataServiceService,AirportService, AuthService],
-  bootstrap: [AppComponent]
+  providers: [SubmittedDataServiceService, AirportService, AuthService, TravelSearchService, DatePipe, LocationService, GenerativeAiService, ItineraryGeneratorService],
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

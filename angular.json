@@ -30,14 +30,29 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              {
+                "input": "src/styles.scss",
+                "bundleName": "styles",
+                "inject": true
+              },
+              "src/styles/_material-overrides.scss"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
               "./node_modules/popper.js/dist/umd/popper.min.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "html2pdf.js",
+              "rgbcolor",
+              "raf",
+              "core-js",
+              "canvg",
+              "maplibre-gl",
+              "file-saver",
+              "html2canvas",
+              "jspdf"
             ]
-            
           },
           "configurations": {
             "production": {

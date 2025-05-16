@@ -1,46 +1,118 @@
-<div class="container py-5 h-100">
-  <div class="row d-flex align-items-center justify-content-center h-100">
-    <div class="col-md-8 col-lg-7 col-xl-6">
-      <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
-        class="img-fluid" alt="Phone image">
+<div class="auth-layout">
+  <div class="auth-container">
+    <div class="text-center mb-4">
+      <h1 class="text-2xl font-bold">Welcome back</h1>
+      <p class="text-sm text-muted mt-1">
+        Log in to your account to continue
+      </p>
     </div>
-    <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-      <form>
-        <!-- Email input -->
-        <div class="form-outline mb-4">
-          <input type="email" id="form1Example13" class="form-control form-control-lg" />
-          <label class="form-label" for="form1Example13">Email address</label>
-        </div>
 
-        <!-- Password input -->
-        <div class="form-outline mb-4">
-          <input type="password" id="form1Example23" class="form-control form-control-lg" />
-          <label class="form-label" for="form1Example23">Password</label>
-        </div>
+    <!-- Social Login Buttons -->
+    <div class="social-buttons">
+      <button class="social-btn" (click)="handleGoogleLogin()">
+        <i class="material-icons">person</i>
+        <span>Continue with Google</span>
+      </button>
+      <button class="social-btn" (click)="handleFacebookLogin()">
+        <i class="material-icons">facebook</i>
+        <span>Continue with Facebook</span>
+      </button>
+    </div>
 
-        <div class="d-flex justify-content-around align-items-center mb-4">
-          <!-- Checkbox -->
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
-            <label class="form-check-label" for="form1Example3"> Remember me </label>
+    <!-- Divider -->
+    <div class="auth-divider">
+      <span class="divider-text">or continue with</span>
+    </div>
+
+    <!-- Login Tabs -->
+    <div class="login-tabs">
+      <div class="tabs-header">
+        <button [class.active]="activeTab === 'email'" (click)="activeTab = 'email'" class="tab-btn">
+          <i class="material-icons">mail</i>
+          <span>Email</span>
+        </button>
+        <button [class.active]="activeTab === 'phone'" (click)="activeTab = 'phone'" class="tab-btn">
+          <i class="material-icons">phone</i>
+          <span>Phone</span>
+        </button>
+      </div>
+
+      <!-- Email Login Form -->
+      <div class="tab-content" *ngIf="activeTab === 'email'">
+        <form (ngSubmit)="handleEmailLogin()" class="login-form">
+          <div class="form-group">
+            <input 
+              type="email" 
+              class="auth-input" 
+              placeholder="Email address"
+              [(ngModel)]="email"
+              name="email"
+            >
+            <input 
+              type="password" 
+              class="auth-input" 
+              placeholder="Password"
+              [(ngModel)]="password"
+              name="password"
+            >
           </div>
-          <a href="#!">Forgot password?</a>
-        </div>
+          <div class="text-right">
+            <a href="/forgot-password" class="forgot-link">Forgot password?</a>
+          </div>
+          <button type="submit" class="auth-button">Log in</button>
+        </form>
+      </div>
 
-        <!-- Submit button -->
-        <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+      <!-- Phone Login Form -->
+      <div class="tab-content" *ngIf="activeTab === 'phone'">
+        <ng-container *ngIf="!isOtpSent">
+          <form (ngSubmit)="handleSendOtp()" class="login-form">
+            <input 
+              type="tel" 
+              class="auth-input" 
+              placeholder="Phone number"
+              [(ngModel)]="phoneNumber"
+              name="phoneNumber"
+            >
+            <button type="submit" class="auth-button">Send verification code</button>
+          </form>
+        </ng-container>
 
-        <div class="divider d-flex align-items-center my-4">
-          <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
-        </div>
+        <ng-container *ngIf="isOtpSent">
+          <div class="otp-section">
+            <p class="text-center text-sm text-muted">
+              Enter the 6-digit code sent to {{phoneNumber}}
+            </p>
+            <div class="otp-input">
+              <input 
+                type="text" 
+                class="otp-digit" 
+                maxlength="1"
+                *ngFor="let _ of [1,2,3,4,5,6]"
+                (keyup)="onOtpDigitInput($event)"
+              >
+            </div>
+            <div class="otp-actions">
+              <button (click)="isOtpSent = false" class="text-link">
+                Use a different number
+              </button>
+              <button class="text-link">
+                Resend code
+              </button>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
 
-        <div id="google-login">
-        </div>
-        <!-- <a class="btn btn-primary btn-lg btn-block" style="background-color: #55acee" href="#!"
-          role="button">
-          <i class="fab fa-twitter me-2"></i>Continue with Twitter</a> -->
-
-      </form>
+    <!-- Sign Up Link -->
+    <div class="text-center mt-4">
+      <p class="text-sm text-muted">
+        Don't have an account?
+        <a routerLink="/signup" class="text-primary font-medium hover-underline">
+          Sign up
+        </a>
+      </p>
     </div>
   </div>
 </div>

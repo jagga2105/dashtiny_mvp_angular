@@ -1,0 +1,104 @@
+<div class="itinerary-preview">
+  <!-- Add reference for PDF export -->
+  <div #itineraryContent>
+    <div class="itinerary-header">
+      <h3>{{ data.message }}</h3>
+      <img [src]="data?.tripImage || 'assets/images/default-trip.jpg'" [alt]="data?.message" class="trip-image">
+    </div>
+
+    <div class="overview-section">
+      <div class="detail-card">
+        <i class="material-icons">schedule</i>
+        <div class="detail-info">
+          <label>Duration</label>
+          <span>{{ data?.data?.totalTripDuration || 'Not specified' }}</span>
+        </div>
+      </div>
+      <div class="detail-card">
+        <i class="material-icons">route</i>
+        <div class="detail-info">
+          <label>Total Distance</label>
+          <span>{{ data?.data?.totalDistance || 'Not specified' }}</span>
+        </div>
+      </div>
+      <div class="detail-card">
+        <i class="material-icons">account_balance_wallet</i>
+        <div class="detail-info">
+          <label>Budget</label>
+          <span>₹{{ (data?.data?.estimatedBudget?.total || 0) | number }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="travel-details">
+      <div class="departure">
+        <div class="location-header">
+          <i class="material-icons">flight_takeoff</i>
+          <h4>Departure</h4>
+        </div>
+        <div class="location-details">
+          <div class="location">{{ data?.data?.departure?.location || 'Not specified' }}</div>
+          <div class="datetime">{{ data?.data?.departure?.date || 'TBD' }} at {{ data?.data?.departure?.time || 'TBD' }}</div>
+          <div class="weather" *ngIf="data?.data?.departure?.weather">
+            <i class="material-icons">{{ getWeatherIcon(data?.data?.departure?.weather?.condition ?? '') }}</i>
+            <span>{{ data?.data?.departure?.weather?.temperature }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="connection-icon">
+        <i class="material-icons">flight</i>
+      </div>
+
+      <div class="arrival">
+        <div class="location-header">
+          <i class="material-icons">flight_land</i>
+          <h4>Arrival</h4>
+        </div>
+        <div class="location-details">
+          <div class="location">{{ data?.data?.arrival?.location || 'Not specified' }}</div>
+          <div class="datetime">{{ data?.data?.arrival?.date || 'TBD' }} at {{ data?.data?.arrival?.time || 'TBD' }}</div>
+          <div class="weather" *ngIf="data?.data?.arrival?.weather">
+            <i class="material-icons">{{ getWeatherIcon(data?.data?.arrival?.weather?.condition ?? '') }}</i>
+            <span>{{ data?.data?.arrival?.weather?.temperature }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="daily-itinerary">
+      <div *ngFor="let day of data?.data?.dailyItinerary" class="day-schedule">
+        <div class="day-header">
+          <h5>
+            <span class="day-indicator">Day {{ day?.day || getDayNumber(day?.date ?? '') }}</span>
+            {{ day?.date || 'TBD' }}
+          </h5>
+        </div>
+        <div class="activities">
+          <div *ngFor="let activity of day?.activities" class="activity-item">
+            <div class="activity-time">
+              {{ getActivityTime(activity) || 'TBD' }}
+            </div>
+            <div class="activity-details">
+              <strong>{{ getActivityDescription(activity) }}</strong>
+              <div class="location" *ngIf="getActivityLocation(activity)">
+                <i class="material-icons">location_on</i>
+                {{ getActivityLocation(activity) }}
+              </div>
+              <div class="cost" *ngIf="activity.estimatedCost && activity.estimatedCost > 0">
+                <i class="material-icons">monetization_on</i>
+                ₹{{ activity.estimatedCost }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add PDF export button -->
+  <button class="save-itinerary-btn" (click)="exportToPDF()" [disabled]="isLoading">
+    <i class="material-icons">{{ isLoading ? 'hourglass_empty' : 'picture_as_pdf' }}</i>
+    <span class="tooltip">Save as PDF</span>
+  </button>
+</div>

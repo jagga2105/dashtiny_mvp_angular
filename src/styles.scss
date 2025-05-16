@@ -1,7 +1,9 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import './styles/material-overrides';
+
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -58,6 +60,9 @@ body, p {
 body{
   background: #fafafa;
   top:0 !important;
+  line-height: normal;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 16px;
 }
 .form-control:focus {
     box-shadow:none;
@@ -97,6 +102,7 @@ body{
     i {
       color:#fff !important;
     }
+  line-height: normal !important;
 }
 .btn-primary:hover {
   i {
@@ -509,9 +515,6 @@ button:focus,
   .main-nav .navbar-nav .nav-item .nav-link {
     line-height: 25px;
   }
-}
-.main-nav .navbar-nav .nav-item .nav-link span i {
-  font-size: 11px;
 }
 .main-nav .navbar-nav .nav-item.active .nav-link {
   color: #2e7eed;
@@ -1889,4 +1892,36 @@ font {
 }
 .modal-fullscreen .modal-content {
   height:100vh !important;
+}
+
+// Dialog overlay styles
+.cdk-overlay-container {
+  z-index: 2000 !important;
+}
+
+.mat-dialog-container {
+  position: relative;
+  z-index: 2001 !important;
+}
+
+.travel-dialog-backdrop {
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9 !important;
+}
+
+.travel-dialog-overlay {
+  z-index: 10 !important;
+}
+
+.mdc-text-field {
+  line-height: normal !important;
+  
+  &--outlined {
+    --mdc-typography-body1-line-height: normal !important;
+  }
+}
+
+// Fix Bootstrap conflicts with Material
+.form-control {
+  line-height: normal !important;
 }

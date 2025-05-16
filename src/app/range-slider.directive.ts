@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Directive, ElementRef, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import * as noUiSlider from 'nouislider';
 
 @Directive({
@@ -7,8 +7,8 @@ import * as noUiSlider from 'nouislider';
 export class RangeSliderDirective implements OnInit {
   @Input() minValue: number = 0;
   @Input() maxValue: number = 100;
-  @Input() startValue: number = 1000; // Initial range values
-  @Output() rangeChange: EventEmitter<number> = new EventEmitter();
+  @Input() startValue: number = 0;
+  @Output() rangeChange = new EventEmitter<number>();
 
   constructor(private el: ElementRef) {}
 
@@ -23,9 +23,9 @@ export class RangeSliderDirective implements OnInit {
       }
     });
 
-    slider.noUiSlider.on('update', (values: number) => {
-      const maxValue = values;
-      this.rangeChange.emit(maxValue);
+    slider.noUiSlider.on('update', (values: number[]) => {
+      const value = Array.isArray(values) ? values[0] : values;
+      this.rangeChange.emit(value);
     });
   }
 }

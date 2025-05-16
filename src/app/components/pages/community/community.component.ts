@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { TravelInputDialogComponent } from '../../dialogs/travel-input-dialog/travel-input-dialog.component';
+
 interface Getaway {
   id: number;
   destination: string;
@@ -45,6 +48,7 @@ export interface GetawayUser {
   imageUrl: string;
   verified: boolean;
 }
+
 @Component({
   selector: 'app-community',
   templateUrl: './community.component.html',
@@ -485,6 +489,66 @@ export class CommunityComponent {
       imageUrl: '../../../../assets/trips/10.jpg'
     }
   ];
+
+  // Add active card tracking
+  activeCardIndex: number = 0;
+
+  // Add community features
+  communityFeatures = [
+    {
+      icon: 'group',
+      title: 'Find Travel Buddies',
+      desc: 'Connect with like-minded travelers and plan adventures together'
+    },
+    {
+      icon: 'explore',
+      title: 'Join Group Trips',
+      desc: 'Discover and join exciting group travel experiences'
+    },
+    {
+      icon: 'forum',
+      title: 'Share Experiences',
+      desc: 'Share your travel stories and get tips from fellow travelers'
+    }
+  ];
+
+  // Add trip type icons mapping
+  private tripTypeIcons: { [key: string]: string } = {
+    'adventure': 'hiking',
+    'cultural': 'museum',
+    'beach': 'beach_access',
+    'city': 'location_city',
+    'nature': 'park',
+    'default': 'place'
+  };
+
+  constructor(private dialog: MatDialog) {}
+
+  // Add method to set active card
+  setActiveCard(index: number): void {
+    this.activeCardIndex = index;
+  }
+
+  // Add method to get trip type icon
+  getTripTypeIcon(type: string): string {
+    return this.tripTypeIcons[type.toLowerCase()] || this.tripTypeIcons['default'];
+  }
+
+  // Add method to open travel dialog
+  openTravelDialog(): void {
+    const dialogRef = this.dialog.open(TravelInputDialogComponent, {
+      width: '800px',
+      height: '90vh',
+      panelClass: 'travel-input-dialog'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Travel dialog closed with result:', result);
+      }
+    });
+  }
+
   slidePrevious() {
     const element: HTMLElement | null = document.getElementById('carouselExample');
     if (element) {
@@ -534,6 +598,5 @@ export class CommunityComponent {
     const user = sessionStorage.getItem('LoggedInUser');
     return !!user;
   }
-
 }
 

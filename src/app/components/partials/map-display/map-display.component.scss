@@ -1,0 +1,195 @@
+.map-container {
+  position: relative;
+  height: 400px;
+  width: 100%;
+  margin: 20px 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  
+  #map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+:host ::ng-deep {
+  .marker-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    
+    &.departure {
+      background: #4CAF50;
+      color: white;
+    }
+    
+    &.arrival {
+      background: #F44336;
+      color: white;
+    }
+    
+    &.activity {
+      background: #2196F3;
+      color: white;
+    }
+    
+    &.restaurant { background: #FF9800; }
+    &.cafe { background: #795548; }
+    &.temple { background: #F44336; }
+    &.park { background: #4CAF50; }
+    &.museum { background: #9C27B0; }
+    &.hotel { background: #2196F3; }
+    &.monument { background: #607D8B; }
+    &.transport { background: #03A9F4; }
+    &.hiking { background: #8BC34A; }
+    &.shopping { background: #FF4081; }
+    &.landmark { background: #FFC107; }
+    &.waterfall { background: #00BCD4; }
+    &.lake { background: #03A9F4; }
+    &.viewpoint { background: #9C27B0; }
+    
+    .material-icons {
+      font-size: 20px;
+    }
+  }
+
+  .route-arrow {
+    .material-icons {
+      color: #2196F3;
+      font-size: 20px;
+      filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.3));
+    }
+  }
+
+  .marker-popup {
+    padding: 5px;
+    
+    h4 {
+      margin: 0 0 5px 0;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .day-badge {
+      background: #2196F3;
+      color: white;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+      margin: 5px 0;
+      display: inline-block;
+    }
+
+    .type-badge {
+      background: #9E9E9E;
+      color: white;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+      margin-top: 5px;
+      display: inline-block;
+    }
+
+    p {
+      margin: 5px 0;
+      font-size: 12px;
+    }
+  }
+
+  .custom-popup-container {
+    .leaflet-popup-content-wrapper {
+      padding: 0;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .leaflet-popup-content {
+      margin: 0;
+      width: 280px !important;
+    }
+
+    .custom-popup {
+      .popup-header {
+        padding: 12px;
+        color: white;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        &.departure { background: #4CAF50; }
+        &.arrival { background: #F44336; }
+        &.restaurant { background: #FF9800; }
+        &.temple { background: #F44336; }
+        &.park { background: #4CAF50; }
+        &.museum { background: #9C27B0; }
+        &.hotel { background: #2196F3; }
+        &.landmark { background: #FFC107; }
+        // ...other type colors...
+
+        h4 {
+          margin: 0;
+          font-size: 16px;
+          font-weight: 500;
+        }
+
+        i {
+          font-size: 20px;
+        }
+      }
+
+      .popup-day, .popup-description, .popup-type {
+        padding: 8px 12px;
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        border-bottom: 1px solid #eee;
+
+        i {
+          font-size: 18px;
+          color: #666;
+          margin-top: 2px;
+        }
+
+        p {
+          margin: 0;
+          color: #444;
+          font-size: 14px;
+        }
+
+        span {
+          color: #444;
+          font-size: 14px;
+        }
+      }
+
+      .popup-description {
+        p {
+          line-height: 1.4;
+        }
+      }
+    }
+  }
+
+  .leaflet-overlay-pane {
+    path {
+      stroke-opacity: 0.8 !important;
+      stroke-width: 4px !important;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      pointer-events: all;
+      
+      &:hover {
+        stroke-opacity: 1 !important;
+        stroke-width: 5px !important;
+      }
+    }
+  }
+}

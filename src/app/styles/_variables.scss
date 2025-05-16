@@ -1,0 +1,23 @@
+// Add these global spacing variables for consistency
+:root {
+  // Section spacing
+  --section-padding-y: 100px;
+  --section-margin-bottom: 40px;
+  
+  // Header spacing
+  --header-margin-bottom: 80px;
+  
+  // Card spacing
+  --card-gap: 30px;
+  --card-padding: 24px;
+  
+  // Colors should be consistent
+  --primary-color: #fe8535;
+  --primary-gradient: linear-gradient(135deg, #2a9ef4 0%, #fe8535 100%);
+  --accent-color: #ffe1d4;
+  --text-light: rgba(255, 255, 255, 0.8);
+  
+  // Common overlays
+  --glass-overlay: rgba(255, 255, 255, 0.1);
+  --glass-blur: blur(10px);
+}

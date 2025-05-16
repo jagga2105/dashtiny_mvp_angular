@@ -15,11 +15,10 @@
           Bookings
         </a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link notranslate" routerLink="/hire-us" routerLinkActive="active">
-          Hire Us
         </a>
-      </li>
+      </li> -->
       <li class="nav-item">
         <a class="nav-link notranslate" routerLink="/community" routerLinkActive="active">
           Community
@@ -36,18 +35,18 @@
         </div>
 
       </div> -->
-      <button class="btn btn-primary me-2" type="button">
+      <!-- <button class="btn btn-primary me-2" type="button">
         Our Products
-      </button>
+      </button> -->
       <button class="btn btn-primary me-2" *ngIf="!isLoggedIn()" routerLink="/login" type="button">
         <i class="material-icons notranslate">account_circle</i> Login
       </button>
       <!-- <button class="btn btn-secondary" *ngIf="!isLoggedIn()" type="button">
         <i class="material-icons notranslate">person_add</i> Sign Up
       </button> -->
-      <button class="btn btn-primary me-2" *ngIf="isLoggedIn()" type="button" (click)="loadDashboard()">
+      <!-- <button class="btn btn-primary me-2" *ngIf="isLoggedIn()" type="button" (click)="loadDashboard()">
         <i class="material-icons notranslate">dashboard</i> Dashboard
-      </button>
+      </button> -->
       <div class="nav-item dropdown" *ngIf="isLoggedIn()" [class.show]="isNotificationDropdownOpen" (click)="toggleNotificationDropdown()">
         <!-- <a class="nav-link dropdown-toggle p-2 m-0" id="userDropdown" role="button" >
           <span class="material-symbols-outlined">

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { FlightDetailsService } from '../../../flight-details.service';
 import { SubmittedDataServiceService } from '../../../submitted-data-service.service';
 import { FlightListingService } from '../../../services/flights/flight-listing.service';
@@ -20,7 +20,7 @@ export class BookingsComponent implements OnInit {
     { label: 'Movie', icon: 'local_movies' },
     { label: 'Event', icon: 'event' },
   ];
-  constructor(public flightDetailsService: FlightDetailsService, private flightListingService: FlightListingService, private hotelListingService: HotelListingService, public submittedDataServiceService: SubmittedDataServiceService) { }
+  constructor(private renderer:Renderer2, public flightDetailsService: FlightDetailsService, private flightListingService: FlightListingService, private hotelListingService: HotelListingService, public submittedDataServiceService: SubmittedDataServiceService) { }
   @ViewChild('flightForm') flightForm: any;
   @ViewChild('hotelForm') hotelForm: any;
   @ViewChild('chatPopupModal', { static: false }) chatPopupModal: ElementRef;
@@ -29,6 +29,7 @@ export class BookingsComponent implements OnInit {
 
   openChatPopup() {
     this.showChatPopup = true;
+    this.renderer.addClass(document.documentElement, 'no-scroll');
     setTimeout(() => {
       if (this.chatPopupModal) {
         const modal = this.chatPopupModal.nativeElement;
@@ -44,7 +45,9 @@ export class BookingsComponent implements OnInit {
       modal.style.display = 'none';
       modal.classList.remove('show');
     }
+
     this.showChatPopup = false;
+    this.renderer.removeClass(document.documentElement, 'no-scroll');
   }
   activeTabIndex = 0;
   isFlightTabActive: boolean = true;

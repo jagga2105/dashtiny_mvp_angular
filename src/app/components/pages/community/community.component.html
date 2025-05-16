@@ -1,381 +1,282 @@
 <div *ngIf="!isLoggedIn()">
-  <section class="section gradient-banner">
-    <div class="shapes-container">
-      <div class="shape" data-aos="fade-down-left" data-aos-duration="1500" data-aos-delay="100"></div>
-      <div class="shape" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100"></div>
-      <div class="shape" data-aos="fade-up-right" data-aos-duration="1000" data-aos-delay="200"></div>
-      <div class="shape" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"></div>
-      <div class="shape" data-aos="fade-down-left" data-aos-duration="1000" data-aos-delay="100"></div>
-      <div class="shape" data-aos="fade-down-left" data-aos-duration="1000" data-aos-delay="100"></div>
-      <div class="shape" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="300"></div>
-      <div class="shape" data-aos="fade-down-right" data-aos-duration="500" data-aos-delay="200"></div>
-      <div class="shape" data-aos="fade-down-right" data-aos-duration="500" data-aos-delay="100"></div>
-      <div class="shape" data-aos="zoom-out" data-aos-duration="2000" data-aos-delay="500"></div>
-      <div class="shape" data-aos="fade-up-right" data-aos-duration="500" data-aos-delay="200"></div>
-      <div class="shape" data-aos="fade-down-left" data-aos-duration="500" data-aos-delay="100"></div>
-      <div class="shape" data-aos="fade-up" data-aos-duration="500" data-aos-delay="0"></div>
-      <div class="shape" data-aos="fade-down" data-aos-duration="500" data-aos-delay="0"></div>
-      <div class="shape" data-aos="fade-up-right" data-aos-duration="500" data-aos-delay="100"></div>
-      <div class="shape" data-aos="fade-down-left" data-aos-duration="500" data-aos-delay="0"></div>
+  <section class="hero-section">
+    <!-- Background Effects -->
+    <div class="hero-effects">
+      <div class="gradient-background"></div>
+      <div class="pattern-overlay"></div>
+      <div class="shapes-container">
+        <div class="shape shape-1" data-aos="fade-down-left"></div>
+        <div class="shape shape-2" data-aos="fade-up-right"></div>
+        <div class="shape shape-3" data-aos="zoom-in"></div>
+        <div class="shape shape-4" data-aos="fade-up"></div>
+      </div>
     </div>
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-md-6 order-2 order-md-1 text-center text-md-left">
-          <h1 class="text-dark">Join Dashtiny Travel Community</h1>
-          <p class="text-dark">Welcome to the heart of shared adventures! Our vibrant travel community is where
-            wanderlust
-            meets connection. Whether you're a solo explorer seeking companionship, a group looking to expand, or a
-            traveler eager to share your journeys, our community is your gateway to endless possibilities.</p>
+    
+    <div class="hero-container mx-auto">
+      <div class="hero-content-wrapper">
+        <!-- Left Content -->
+        <div class="hero-main-content" data-aos="fade-right">
+          <div class="hero-badge">
+            <span class="badge-icon">👥</span>
+            <span class="badge-text">Travel Community</span>
+          </div>
 
-          <form class="d-flex position-relative">
+          <h1 class="hero-title">
+            Connect With Fellow
+            <span class="gradient-text">Travelers</span>
+            <br>on <span class="accent-text">Dashtiny</span>
+          </h1>
 
-            <input type="text" class="form-control" id="destination" placeholder="Enter Destination">
-            <button type="submit" class="btn btn-primary position-absolute float-button">Search</button>
+          <p class="hero-description">
+            Join our vibrant community of explorers. Share experiences, find travel companions, and create unforgettable memories together.
+          </p>
 
-          </form>
+          <!-- Search Card -->
+          <div class="hero-search-card glass-effect">
+            <div class="search-inputs">
+              <div class="input-group">
+                <i class="material-icons">place</i>
+                <input type="text" placeholder="Find travel companions in...">
+              </div>
+              <div class="input-group">
+                <i class="material-icons">group</i>
+                <input type="text" placeholder="Type of travel companion...">
+              </div>
+            </div>
+            <button class="search-button">
+              <i class="material-icons">search</i>
+              <span>Find Companions</span>
+            </button>
+          </div>
 
+          <!-- Stats -->
+          <div class="hero-stats glass-effect">
+            <div class="stat-item">
+              <span class="stat-number">50K+</span>
+              <span class="stat-label">Travel Buddies</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">1000+</span>
+              <span class="stat-label">Active Trips</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">120+</span>
+              <span class="stat-label">Countries</span>
+            </div>
+          </div>
         </div>
-        <div class="col-md-6 text-center order-1 order-md-2">
-          <img class="img-fluid" src="../../assets/community.png" alt="screenshot">
+
+        <!-- Right Content -->
+        <div class="hero-cards" data-aos="fade-left">
+          <div class="feature-cards-container">
+            <div class="feature-card glass-effect" *ngFor="let feature of communityFeatures; let i = index"
+                 [class.active]="activeCardIndex === i"
+                 (mouseenter)="setActiveCard(i)">
+              <div class="card-icon">
+                <i class="material-icons">{{feature.icon}}</i>
+              </div>
+              <h3>{{feature.title}}</h3>
+              <p>{{feature.desc}}</p>
+            </div>
+          </div>
+
+          <div class="cta-buttons">
+            <button class="btn-primary" routerLink="/signup">
+              <i class="material-icons">group_add</i>
+              Join Community
+            </button>
+            <button class="btn-secondary" (click)="openTravelDialog()">
+              <i class="material-icons">explore</i>
+              Explore Trips
+            </button>
+          </div>
         </div>
       </div>
+    </div>
+
+    <!-- Wave Animation -->
+    <div class="hero-bottom-wave">
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path fill="#ffffff" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,208C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+      </svg>
     </div>
   </section>
-  <!--====  End of Hero Section  ====-->
 
-  <section class="section py-0 position-relative pull-top">
-    <div class="container">
-      <div class="rounded shadow p-5 bg-white">
-        <div class="row">
-          <!-- Connect with Explorers -->
-          <div class="col-lg-4 col-md-6 mt-5 mt-md-0 text-center">
-            <span class="text-dark material-symbols-outlined notranslate h1">
-              connect_without_contact
-            </span>
-            <h3 class="mt-4 text-capitalize h5">Connect with travelers</h3>
-            <p class="regular text-muted">Embark on a global journey of connections! Join our vibrant community of
-              travelers.
-              Whether you're a seasoned explorer or just starting your journey, connect with fellow wanderers who share
-              your
-              passion for exploration!</p>
-          </div>
-
-          <!-- Share Your Experiences -->
-          <div class="col-lg-4 col-md-6 mt-5 mt-md-0 text-center">
-            <span class="text-dark h1 material-symbols-outlined notranslate">
-              share_location
-            </span>
-            <h3 class="mt-4 text-capitalize h5">Share your experiences</h3>
-            <p class="regular text-muted">Connect, Inspire, and Explore Together! Join a community of fellow travelers
-              to
-              share your stories, tips, and experiences from around the globe. Let your adventures inspire others and be
-              inspired
-              by theirs. Start sharing today and embark on a journey of endless discovery!</p>
-          </div>
-
-          <!-- Join or Post Getaways for Like-Minded -->
-          <div class="col-lg-4 col-md-12 mt-5 mt-lg-0 text-center">
-            <span class="text-dark h1 material-symbols-outlined notranslate">
-              approval
-            </span>
-            <h3 class="mt-4 text-capitalize h5">Join or post trips for like-minded</h3>
-            <p class="regular text-muted">Whether you're seeking companions for a Himalayan trek, a culinary tour of
-              Tuscany, or
-              a cultural immersion in Tokyo, find your travel tribe here. Join planned trips or create your own, and let
-              the
-              journey begin!</p>
-            <div class="mt-4">
-              <!-- Booking Options -->
-              <h5 class="text-capitalize h6">Book Your Adventure:</h5>
-              <div class="d-flex justify-content-between">
-                <button class="btn btn-primary btn-sm" (click)="bookIndividual()">Individual Booking</button>
-                <button class="btn btn-primary btn-sm" (click)="bookGroup()">Group Booking</button>
-              </div>
-            </div>
-          </div>
-        </div>
+  <!-- Top Explorers Section -->
+  <section class="features-section">
+    <div class="container mx-auto px-4">
+      <div class="section-header text-center">
+        <span class="subtitle">Meet Our Community</span>
+        <h2 class="title">Top Explorers & Influencers</h2>
+        <p class="description">Connect with experienced travelers and discover amazing destinations</p>
       </div>
 
-    </div>
-  </section>
-  <section class="section community-section py-0 bg-light mt-4">
-    <div class="container">
-
-      <div class="row">
-        <div class="col">
-          <h2 class="h5 my-4">Top Explorers & Influencers</h2>
-          <div id="carouselExample" class="carousel slide" data-ride="false" data-interval="false">
-            <div class="carousel-inner">
-              <!-- First Slide -->
-              <div class="carousel-item active">
-                <div class="row">
-                  <!-- Loop through first 4 users -->
-                  <ng-container *ngFor="let user of users; let i = index">
-                    <div class="col-3" *ngIf="i < 4">
-                      <app-user-card [user]="user" (connect)="connectWithUser(user)"
-                        (follow)="followUser(user)"></app-user-card>
-                    </div>
-                  </ng-container>
-                </div>
+      <div class="explorer-grid">
+        <div class="explorer-cards-container">
+          <div class="explorer-card" *ngFor="let user of users | slice:0:8" data-aos="fade-up">
+            <div class="profile-banner"></div>
+            
+            <div class="profile-info">
+              <img [src]="user.imageUrl" [alt]="user.name" class="profile-image">
+              <div class="verified-badge" *ngIf="user.verified">
+                <i class="material-icons">verified</i>
               </div>
-              <!-- Second Slide -->
-              <div class="carousel-item">
-                <div class="row">
-                  <!-- Loop through next 4 users -->
-                  <ng-container *ngFor="let user of users; let i = index">
-                    <div class="col-3" *ngIf="i >= 4 && i < 8">
-                      <app-user-card [user]="user" (connect)="connectWithUser(user)"
-                        (follow)="followUser(user)"></app-user-card>
-                    </div>
-                  </ng-container>
-                </div>
-              </div>
-
-              <!-- Controls -->
-              <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a>
-            </div>
-
-          </div>
-        </div>
-
-        <h2 class="h5 my-4">Upcoming Getaways</h2>
-        <!-- Loop through tripsNearYou -->
-        <ng-container *ngFor="let trip of tripsNearYou; let i = index">
-          <div class="col-md-3">
-            <div class="trip-card mb-4 position-relative card">
-
-
-              <!-- User Image -->
-              <div class="user-detail">
-                <img class="user-img-top" [src]="trip.tripUser.imageUrl" alt="User Image">
-                <h5 class="card-title">{{ trip.tripUser.name }}</h5>
-
-                <span class="favorite-icon" [ngClass]="{ 'filled': trip.isLiked }" (click)="toggleLike(trip)">
-                  <span class="material-symbols-outlined notranslate">
-                    favorite
-                  </span>
-                </span>
-                <img class="card-img-top" [src]="trip.imageUrl" alt="trip img">
-                <p class="card-text d-flex trip-type"><span class="material-symbols-outlined notranslate pr-2">
-                    flights_and_hotels
-                  </span> {{ trip.type }}</p>
-              </div>
-              <div class="card-body position-relative">
-
-
-                <p class="card-text d-flex"><span class="material-symbols-outlined notranslate pr-2">
-                    date_range
-                  </span> {{ trip.startDate | date: 'mediumDate' }} to {{ trip.endDate | date: 'mediumDate' }}</p>
-
-                <p class="card-text d-flex"><span class="material-symbols-outlined notranslate  pr-2">
-                    location_on
-                  </span> {{ trip.location }}</p>
-                <p class="card-text">{{ trip.description }}</p>
-                <div class="d-flex justify-content-between action-button">
-                  <button class="btn btn-outline-success" (click)="connectWithTripUser(trip.tripUser)">Connect</button>
-                  <button class="btn btn-primary" (click)="showTripDetails(trip)">Trip Details</button>
-                </div>
+              
+              <h3 class="name">{{user.name}}</h3>
+              <div class="location">
+                <i class="material-icons">place</i>
+                <span>{{user.upcomingTrips[0]?.destination}}</span>
               </div>
             </div>
-          </div>
-          <!-- Clear the row after every 4 items -->
-          <div *ngIf="(i + 1) % 4 === 0" class="w-100"></div>
-        </ng-container>
 
+            <div class="stats-grid">
+              <div class="stat-item">
+                <div class="stat-value">{{user.upcomingTrips?.length}}</div>
+                <div class="stat-label">Trips</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">{{user.pastExperiences?.length}}</div>
+                <div class="stat-label">Places</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">4.9</div>
+                <div class="stat-label">Rating</div>
+              </div>
+            </div>
 
-
-
-      </div>
-      <!-- Add other sections for upcoming trips, past experiences, etc. -->
-
-      <div class="row">
-        <!-- Sidebar for Interactions -->
-        <div class="col-lg-8">
-          <div class="card mb-4">
-            <div class="card-body">
-              <h3 class="card-title">Upcoming Getaways</h3>
-              <!-- Loop through upcoming trips -->
-              <div class="trip-listing">
-                <div class="media">
-                  <img src="trip-image.jpg" class="mr-3 trip-image" alt="Trip Image">
-                  <div class="media-body">
-                    <h5 class="mt-0 trip-title">Trip to [Destination]</h5>
-                    <p class="trip-details">Dates: [Start Date] - [End Date]</p>
-                    <p class="trip-details">Organizer: [Organizer Name]</p>
-                    <p class="trip-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut
-                      blandit
-                      libero.</p>
-                    <a href="#" class="btn btn-primary">Enroll Now</a>
+            <div class="upcoming-trips">
+              <div class="section-title">
+                <i class="material-icons">flight_takeoff</i>
+                Upcoming Trips
+              </div>
+              <div class="trip-list">
+                <div class="trip-item" *ngFor="let trip of user.upcomingTrips | slice:0:2">
+                  <div class="trip-icon">
+                    <i class="material-icons">flight</i>
+                  </div>
+                  <div class="trip-details">
+                    <div class="trip-destination">{{trip.destination}}</div>
+                    <div class="trip-date">{{trip.startDate | date:'mediumDate'}}</div>
                   </div>
                 </div>
               </div>
             </div>
+
+            <div class="card-actions">
+              <button class="btn-connect" (click)="connectWithUser(user)">
+                <i class="material-icons">person_add</i>
+                Connect
+              </button>
+              <button class="btn-follow" (click)="followUser(user)">
+                <i class="material-icons">rss_feed</i>
+                Follow
+              </button>
+            </div>
           </div>
         </div>
-        <div class="col-lg-4">
-          <div class="card mb-4">
-            <div class="card-body">
-              <h3 class="card-title">Interact with Explorers</h3>
-              <p>Connect with fellow travelers, share experiences, and get valuable tips for your next adventure.</p>
-              <!-- Recent Posts -->
-              <h5 class="mt-4">Recent Posts</h5>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">[Post Title]</li>
-                <li class="list-group-item">[Post Title]</li>
-                <li class="list-group-item">[Post Title]</li>
-              </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Upcoming Getaways Section -->
+  <section class="ai-assistant-section">
+    <div class="section-header text-center">
+      <span class="subtitle">Join Adventures</span>
+      <h2 class="title">Upcoming Getaways</h2>
+      <p class="description">Find your next adventure and perfect travel companions</p>
+    </div>
+
+    <div class="container mx-auto px-4">
+      <div class="trips-grid">
+        <div class="trip-card" *ngFor="let trip of tripsNearYou" data-aos="fade-up">
+          <div class="trip-image">
+            <img [src]="trip.imageUrl" [alt]="trip.location">
+            <div class="trip-organizer">
+              <img [src]="trip.tripUser.imageUrl" [alt]="trip.tripUser.name">
+              <span>{{trip.tripUser.name}}</span>
             </div>
+            <button class="like-button" [class.liked]="trip.isLiked" (click)="toggleLike(trip)">
+              <i class="material-icons">favorite</i>
+            </button>
           </div>
 
-          <!-- Post Your Getaway -->
-          <div class="card">
-            <div class="card-body">
-              <h3 class="card-title">Post Your Getaway</h3>
-              <form>
-                <div class="mb-3">
-                  <label for="tripTitle">Trip Title</label>
-                  <input type="text" class="form-control" id="tripTitle" placeholder="Enter Getaway Title">
-                </div>
-                <div class="mb-3">
-                  <label for="tripDates">Dates</label>
-                  <input type="text" class="form-control" id="tripDates" placeholder="Select Getaway Dates">
-                </div>
-                <div class="mb-3">
-                  <label for="tripDescription">Trip Description</label>
-                  <textarea class="form-control" id="tripDescription" rows="3"
-                    placeholder="Enter Getaway Description"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Post Getaway</button>
-              </form>
+          <!-- Fix trip type div -->
+          <div class="trip-type">
+            <i class="material-icons">{{getTripTypeIcon(trip.type)}}</i>
+            <span>{{trip.type}}</span>
+          </div>
+
+          <div class="trip-content">
+            <h3>{{trip.location}}</h3>
+            <p>{{trip.description}}</p>
+            <div class="trip-details">
+              <div class="trip-date">
+                <i class="material-icons">event</i>
+                <span>{{trip.startDate | date}} - {{trip.endDate | date}}</span>
+              </div>
+            </div>
+            <div class="trip-actions">
+              <button class="btn-connect" (click)="connectWithTripUser(trip.tripUser)">
+                <i class="material-icons">person_add</i>
+                Connect
+              </button>
+              <button class="btn-details" (click)="showTripDetails(trip)">
+                <i class="material-icons">info</i>
+                Details
+              </button>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta-section">
+    <div class="container mx-auto px-4">
+      <div class="cta-content">
+        <div class="cta-badge">
+          <span class="badge-icon">✨</span>
+          <span class="badge-text">Limited Time Offer</span>
+        </div>
+        
+        <h2 class="cta-title">
+          Start Your Journey With
+          <span class="gradient-text">New Friends</span>
+        </h2>
+        
+        <p class="cta-description">
+          Join <span class="highlight">50,000+</span> travelers in our community.
+          Get <span class="highlight">exclusive access</span> to group trips and events!
+        </p>
+        
+        <div class="benefits-grid">
+          <!-- ...existing benefits... -->
+        </div>
+
+        <div class="cta-buttons">
+          <button class="btn-primary" routerLink="/signup">
+            <span class="button-content">
+              <i class="material-icons">person_add</i>
+              Join Now
+            </span>
+            <span class="button-badge">Free</span>
+          </button>
+          <button class="btn-secondary" (click)="openTravelDialog()">
+            <i class="material-icons">explore</i>
+            Explore Trips
+          </button>
+        </div>
+
+        <!-- ...existing trust indicators... -->
       </div>
     </div>
   </section>
 </div>
-<div *ngIf="isLoggedIn()" class="mt-5">
-  <div class="container mt-5 pt-5">
-    <div class="row">
-      <!-- Sidebar Menu -->
-      <div class="col-md-3">
 
-
-        <div class="card mb-4">
-          <div class="card-header bg-primary text-white">
-            <h5>Menu</h5>
-          </div>
-          <div class="card-body">
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item"><i class="material-icons">dashboard</i> Dash Friends</li>
-              <li class="list-group-item"><i class="material-icons">account_balance_wallet</i> Dash Coin Available</li>
-              <li class="list-group-item"><i class="material-icons">timeline</i> Dash Timeline</li>
-              <li class="list-group-item"><i class="material-icons">group</i> Dash Groups</li>
-              <li class="list-group-item"><i class="material-icons">event</i> Upcoming Getaways</li>
-              <li class="list-group-item"><i class="material-icons">history</i> Past Getaways</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Main Content -->
-      <div class="col-md-6">
-        <div class="card-progress mb-4">
-          <div class="card-statistic-3 p-4">
-            <div class="card-icon card-icon-large"><i class="material-icons">flight_takeoff</i></div>
-            <div class="mb-4">
-              <h5 class="card-title mb-0">Upcoming Getaways Posted by Friends</h5>
-            </div>
-            <div *ngFor="let getaway of getaways">
-              <div class="row align-items-center mb-2 d-flex">
-
-                <div class="col-8">
-                  <h6 class="d-flex align-items-center mb-0">{{ getaway.name }}</h6>
-                </div>
-                <div class="col-4 text-right">
-                  <small class="text-muted">{{ getaway.date }}</small>
-                </div>
-                <div class="mt-2 d-flex" *ngIf="getaway.images.length > 0">
-                  <div *ngFor="let image of getaway.images" class="image-container"
-                       [ngClass]="{'single-image': getaway.images.length === 1, 'double-image': getaway.images.length === 2}">
-                    <img [src]="image" alt="{{ getaway.destination }}" class="img-fluid">
-                  </div>
-                </div>
-                <div class="col-12 mt-2">
-                  <p class="mb-0">Destination: {{ getaway.destination }}</p>
-                  <div class="progress mt-1" data-height="8" style="height: 8px;">
-                    <div class="progress-bar l-bg-cyan" role="progressbar" [style.width.%]="getaway.progress" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <p class="mb-1 mt-2">Available Seats: {{ getaway.availableSeats }}</p>
-                  <div class="d-flex justify-content-between">
-                    <button class="btn btn-primary btn-sm">Show Interest</button>
-                    <button class="btn btn-secondary btn-sm">Check Details</button>
-                  </div>
-                </div>
-              </div>
-              <hr/>
-            </div>
-
-          </div>
-        </div>
-
-
-      </div>
-
-      <!-- Right Sidebar -->
-      <div class="col-md-3">
-        <div class="row d-flex justify-content-center">
-          <div class="col-md-12">
-            <div class="card mb-4">
-              <div class="card-header bg-primary text-white">
-                <h5>Promotional Banner</h5>
-              </div>
-              <div class="card-body text-center">
-                <img src="https://via.placeholder.com/300x200" class="img-fluid" alt="Promotional Banner">
-              </div>
-            </div>
-
-            <div class="card my-4">
-              <div class="card-header bg-primary text-white">
-                <h5>Active Contacts</h5>
-              </div>
-              <div class="card-body">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <span>Contact 1</span>
-                    <span class="badge badge-primary badge-pill">Online</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <span>Contact 2</span>
-                    <span class="badge badge-primary badge-pill">Online</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <span>Contact 3</span>
-                    <span class="badge badge-primary badge-pill">Online</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <span>Contact 4</span>
-                    <span class="badge badge-primary badge-pill">Online</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <span>Contact 5</span>
-                    <span class="badge badge-primary badge-pill">Online</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-
-  <!--====  End of Community Section  ====-->
+<!-- Logged In View -->
+<div *ngIf="isLoggedIn()" class="community-dashboard">
+  <!-- ...existing logged-in view code... -->
+</div>

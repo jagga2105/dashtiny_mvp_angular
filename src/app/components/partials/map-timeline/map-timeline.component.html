@@ -1,0 +1,17 @@
+<div class="map-timeline-container">
+  <div class="timeline">
+    <div class="timeline-item" *ngFor="let day of itineraryData.days">
+      <div class="day-header">Day {{day.dayNumber}}</div>
+      <div class="activities">
+        <div class="activity-item" *ngFor="let activity of day.activities">
+          <div class="activity-time">{{activity.time}}</div>
+          <div class="activity-content">
+            <div class="activity-title">{{activity.title}}</div>
+            <div class="activity-location">{{activity.location}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="map"></div>
+</div>

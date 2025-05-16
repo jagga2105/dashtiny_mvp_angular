@@ -1,0 +1,86 @@
+<div class="suggestions-container" *ngIf="itineraryData">
+  <!-- Commute Options -->
+  <div class="suggestion-section">
+    <h3>
+      <i class="material-icons">commute</i>
+      Travel Options
+    </h3>
+    <div class="cards-container">
+      <div class="suggestion-card" *ngFor="let option of commuteOptions">
+        <div class="card-image">
+          <img [src]="option.image" [alt]="option.type">
+          <div class="card-type">{{option.type}}</div>
+        </div>
+        <div class="card-content">
+          <h4>{{option.provider}}</h4>
+          <p class="price">{{option.price}}</p>
+          <p class="details">{{option.details}}</p>
+          <button class="book-btn">Book Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Accommodations -->
+  <div class="suggestion-section">
+    <h3>
+      <i class="material-icons">hotel</i>
+      Places to Stay
+    </h3>
+    <div class="cards-container">
+      <div class="suggestion-card" *ngFor="let place of accommodations">
+        <div class="card-image">
+          <img [src]="place.image" [alt]="place.name">
+          <div class="card-type">{{place.type}}</div>
+        </div>
+        <div class="card-content">
+          <h4>{{place.name}}</h4>
+          <div class="rating">
+            <i class="material-icons">star</i>
+            <span>{{place.rating}}</span>
+          </div>
+          <p class="price">{{place.price}}</p>
+          <div class="amenities">
+            <span *ngFor="let amenity of place.amenities">{{amenity}}</span>
+          </div>
+          <button class="book-btn">Check Availability</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Events -->
+  <div class="suggestion-section">
+    <h3>
+      <i class="material-icons">event</i>
+      Events During Your Stay
+    </h3>
+    <div class="cards-container">
+      <div class="suggestion-card" *ngFor="let event of events">
+        <div class="card-image">
+          <img [src]="event.image" [alt]="event.name">
+          <div class="card-type">{{event.type}}</div>
+        </div>
+        <div class="card-content">
+          <h4>{{event.name}}</h4>
+          <p class="date">
+            <i class="material-icons">calendar_today</i>
+            {{event.date}}
+          </p>
+          <p class="location">
+            <i class="material-icons">location_on</i>
+            {{event.location}}
+          </p>
+          <p class="price">{{event.price}}</p>
+          <button class="book-btn">Get Tickets</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- No Data Message -->
+  <div class="no-suggestions" *ngIf="!itineraryData">
+    <i class="material-icons">info</i>
+    <p>Create an itinerary to see personalized suggestions</p>
+  </div>
+</div>
